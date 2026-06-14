@@ -6,17 +6,14 @@
 <title>Flappy Heart 💜</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap');
-
-:root {
-  --c1:#7b2ff7; --c2:#e040fb; --c3:#ff6ec7; --c4:#38d9f5; --c5:#fee440;
-  --bg:#080012; --glass:rgba(255,255,255,0.055); --border:rgba(200,100,255,0.28);
-  --text:#f0e0ff; --muted:rgba(210,170,255,0.6);
-  --font:'Nunito',system-ui,sans-serif; --display:'Orbitron',monospace;
+:root{
+  --c1:#7b2ff7;--c2:#e040fb;--c3:#ff6ec7;--c4:#38d9f5;--c5:#fee440;
+  --bg:#080012;--glass:rgba(255,255,255,0.055);--border:rgba(200,100,255,0.28);
+  --text:#f0e0ff;--muted:rgba(210,170,255,0.6);
+  --font:'Nunito',system-ui,sans-serif;--display:'Orbitron',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);font-family:var(--font);color:var(--text);min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-
-/* orbs */
 .orb{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
 .orb1{width:500px;height:500px;top:-15%;left:-10%;background:rgba(123,47,247,0.22);animation:orbA 10s ease-in-out infinite;}
 .orb2{width:600px;height:600px;bottom:-20%;right:-12%;background:rgba(224,64,251,0.14);animation:orbB 13s ease-in-out infinite;}
@@ -24,24 +21,14 @@ body{background:var(--bg);font-family:var(--font);color:var(--text);min-height:1
 @keyframes orbA{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-35px)}}
 @keyframes orbB{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,45px)}}
 @keyframes orbC{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,20px)}}
-
-/* screens */
 .screen{display:none;width:100%;max-width:470px;z-index:2;position:relative;padding:14px;}
 .screen.active{display:flex;flex-direction:column;align-items:center;}
-
-/* card */
 .card{width:100%;background:var(--glass);backdrop-filter:blur(22px) saturate(1.5);border:1px solid var(--border);border-radius:28px;padding:28px 26px;box-shadow:0 16px 64px rgba(100,0,255,0.28),inset 0 1px 0 rgba(255,255,255,0.09);}
-
-/* logo */
 .logo{font-family:var(--display);font-size:24px;font-weight:900;text-align:center;background:linear-gradient(90deg,var(--c3),var(--c1),var(--c4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;margin-bottom:4px;}
 .sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px;font-weight:600;}
-
-/* inputs */
 input[type=text],input[type=password]{width:100%;padding:12px 16px;border-radius:13px;border:1.5px solid rgba(180,80,255,0.35);background:rgba(255,255,255,0.06);color:#fff;font-family:var(--font);font-size:15px;font-weight:600;outline:none;margin-bottom:11px;transition:border-color 0.2s,box-shadow 0.2s;}
 input::placeholder{color:rgba(200,140,255,0.38);}
 input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
-
-/* buttons */
 .btn-primary{width:100%;padding:14px;border-radius:16px;border:none;cursor:pointer;font-family:var(--font);font-weight:900;font-size:16px;letter-spacing:1px;color:#fff;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 55%,var(--c3) 100%);box-shadow:0 4px 30px rgba(155,93,229,0.55);transition:transform 0.12s,box-shadow 0.12s,filter 0.12s;position:relative;overflow:hidden;}
 .btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.13),transparent);pointer-events:none;}
 .btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 40px rgba(155,93,229,0.7);}
@@ -55,24 +42,18 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
 .btn-danger:active{transform:scale(0.97);}
 .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
 .mt8{margin-top:8px;}.mt10{margin-top:10px;}.mt12{margin-top:12px;}.mt16{margin-top:16px;}
-
-/* msg */
 .msg-err{color:#ff7096;text-align:center;font-size:13px;font-weight:700;margin-bottom:9px;min-height:18px;}
 .msg-ok{color:#7dff9b;text-align:center;font-size:13px;font-weight:700;margin-bottom:9px;min-height:18px;}
-
-/* toast */
 #toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(123,47,247,0.93);backdrop-filter:blur(12px);color:#fff;font-weight:800;padding:11px 26px;border-radius:32px;box-shadow:0 4px 24px rgba(100,0,255,0.5);z-index:999;font-size:14px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.3s;}
 #toast.show{opacity:1;}
-
-/* modal */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,18,0.82);backdrop-filter:blur(12px);z-index:100;align-items:center;justify-content:center;padding:16px;}
 .modal-bg.open{display:flex;}
 .modal-card{width:100%;max-width:380px;background:rgba(14,0,32,0.95);backdrop-filter:blur(24px);border:1px solid rgba(200,100,255,0.35);border-radius:24px;padding:26px 22px;box-shadow:0 16px 64px rgba(100,0,255,0.4);animation:popIn 0.22s cubic-bezier(.34,1.56,.64,1);}
 @keyframes popIn{from{transform:scale(0.88);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-title{font-family:var(--display);font-size:17px;text-align:center;color:var(--c3);margin-bottom:14px;letter-spacing:1px;}
 
-/* ══ LOBBY STATS GRID ══ */
-.hub-stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+/* ── HUB STATS ── */
+.hub-stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
 .hub-stat-box{background:rgba(255,255,255,0.045);border:1px solid rgba(180,80,255,0.15);border-radius:16px;padding:12px 8px;text-align:center;display:flex;flex-direction:column;gap:3px;}
 .hub-stat-label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
 .hub-stat-val{font-family:var(--display);font-size:20px;font-weight:900;line-height:1;}
@@ -80,36 +61,47 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
 .hub-stat-val.pink{color:var(--c3);text-shadow:0 0 12px rgba(255,110,199,0.4);}
 .hub-stat-val.cyan{color:var(--c4);text-shadow:0 0 12px rgba(56,217,245,0.4);}
 
-/* ══ LIVES SECTION ══ */
-.lives-section{background:rgba(255,255,255,0.038);border:1px solid rgba(180,80,255,0.15);border-radius:18px;padding:14px 16px;margin-bottom:10px;}
-.lives-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.lives-title{font-size:13px;font-weight:800;color:var(--text);}
-.lives-badge{font-size:12px;font-weight:900;padding:3px 10px;border-radius:20px;background:rgba(255,110,199,0.15);border:1px solid rgba(255,110,199,0.3);}
-/* segmented bar */
-.lives-bar-wrap{position:relative;height:22px;background:rgba(0,0,0,0.3);border-radius:11px;overflow:hidden;border:1px solid rgba(180,80,255,0.2);}
-.lives-bar-fill{height:100%;border-radius:11px;transition:width 0.5s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
-.lives-bar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.22) 0%,transparent 60%);pointer-events:none;}
-.lives-bar-segments{position:absolute;inset:0;display:flex;}
-.lives-seg{flex:1;border-right:1px solid rgba(0,0,0,0.18);}
-.lives-seg:last-child{border-right:none;}
-.lives-hearts{display:flex;flex-wrap:wrap;gap:2px;margin-top:8px;}
-.lh{font-size:10px;transition:opacity 0.25s,transform 0.25s;display:inline-block;}
-.lh.alive{opacity:1;transform:scale(1);}
-.lh.dead{opacity:0.1;transform:scale(0.7);}
-.lives-refill-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+/* ── SLEEK HEARTS BAR ── */
+.lives-section{background:rgba(10,0,30,0.6);border:1px solid rgba(180,80,255,0.22);border-radius:20px;padding:16px 18px;margin-bottom:12px;position:relative;overflow:hidden;}
+.lives-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,47,247,0.07),rgba(224,64,251,0.04));pointer-events:none;}
+.lives-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.lives-title-row{display:flex;align-items:center;gap:8px;}
+.lives-title{font-size:14px;font-weight:800;color:var(--text);letter-spacing:0.5px;}
+.lives-count-pill{font-family:var(--display);font-size:11px;font-weight:900;padding:3px 10px;border-radius:20px;color:#fff;letter-spacing:1px;}
+.lives-pct{font-size:12px;font-weight:800;color:var(--muted);}
+
+/* segmented honeycomb-style bar */
+.hbar-wrap{position:relative;height:34px;border-radius:17px;background:rgba(0,0,0,0.45);border:1px solid rgba(180,80,255,0.2);overflow:hidden;margin-bottom:10px;}
+.hbar-fill{height:100%;border-radius:17px;transition:width 0.6s cubic-bezier(.4,0,.2,1);position:relative;}
+.hbar-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.28) 0%,transparent 55%);}
+.hbar-glow{position:absolute;top:0;right:0;height:100%;width:40px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18));border-radius:0 17px 17px 0;pointer-events:none;}
+.hbar-segs{position:absolute;inset:0;display:flex;pointer-events:none;}
+.hbar-seg{flex:1;border-right:1px solid rgba(0,0,0,0.22);}
+.hbar-seg:last-child{border-right:none;}
+.hbar-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:12px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:1px;text-shadow:0 1px 4px rgba(0,0,0,0.8);pointer-events:none;}
+
+/* micro heart dots */
+.lives-dots{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px;}
+.ldot{width:8px;height:8px;border-radius:50%;transition:all 0.3s;}
+.ldot.alive{background:var(--c3);box-shadow:0 0 5px rgba(255,110,199,0.6);}
+.ldot.dead{background:rgba(255,255,255,0.08);}
+
+.lives-refill-row{display:flex;align-items:center;justify-content:space-between;}
 .refill-label{font-size:11px;color:var(--muted);font-weight:700;}
 .refill-cd{font-family:var(--display);font-size:13px;color:var(--c2);font-variant-numeric:tabular-nums;}
+.maxhp-label{font-size:10px;color:var(--muted);font-weight:700;}
 
 /* spela */
 #btnSpela{font-family:var(--display);font-size:20px;letter-spacing:5px;padding:18px;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 40%,var(--c3) 70%,var(--c5) 100%);box-shadow:0 4px 36px rgba(155,93,229,0.7),0 0 80px rgba(241,91,181,0.22);border-radius:20px;margin-bottom:9px;animation:spelaPulse 3s ease-in-out infinite;}
 @keyframes spelaPulse{0%,100%{box-shadow:0 4px 36px rgba(155,93,229,0.7),0 0 80px rgba(241,91,181,0.22);}50%{box-shadow:0 8px 55px rgba(224,64,251,0.9),0 0 110px rgba(241,91,181,0.4);}}
-
-/* lamp */
 .lamp{text-align:center;font-size:58px;line-height:1;animation:lampPulse 2.8s ease-in-out infinite;margin-bottom:2px;}
 @keyframes lampPulse{0%,100%{filter:drop-shadow(0 0 20px #b300ff) drop-shadow(0 0 45px #6600cc);}50%{filter:drop-shadow(0 0 55px #e040fb) drop-shadow(0 0 110px #9b5de5);}}
 
-/* canvas */
+/* canvas area */
 #gameCanvas{border-radius:22px;border:1px solid rgba(180,80,255,0.35);box-shadow:0 0 56px rgba(100,0,255,0.42);display:block;cursor:pointer;max-width:100%;}
+#score-btn{position:absolute;top:12px;right:12px;background:rgba(123,47,247,0.75);backdrop-filter:blur(8px);border:1px solid rgba(200,100,255,0.5);border-radius:22px;padding:5px 14px;color:#fff;font-family:var(--display);font-size:13px;font-weight:900;cursor:pointer;z-index:10;transition:background 0.15s;letter-spacing:1px;}
+#score-btn:hover{background:rgba(224,64,251,0.85);}
+.game-wrap{position:relative;max-width:400px;width:100%;}
 
 /* leaderboard */
 .lb-row{display:flex;align-items:center;padding:10px 14px;border-radius:13px;border:1px solid rgba(180,80,255,0.13);background:rgba(255,255,255,0.035);margin-bottom:7px;font-weight:700;font-size:13px;gap:8px;}
@@ -140,6 +132,20 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
 .stat-val{color:var(--c2);font-weight:900;font-size:17px;}
 .stat-val.gold{color:#ffd700;}
 .stat-val.cyan{color:var(--c4);}
+/* audio toggle */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
+.toggle-label{font-size:14px;font-weight:700;color:var(--text);}
+.toggle{position:relative;width:50px;height:26px;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:rgba(80,80,100,0.5);border-radius:13px;cursor:pointer;transition:background 0.25s;}
+.toggle-slider::before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:rgba(255,255,255,0.7);border-radius:50%;transition:transform 0.25s;}
+.toggle input:checked+.toggle-slider{background:var(--c2);}
+.toggle input:checked+.toggle-slider::before{transform:translateX(24px);background:#fff;}
+.vol-row{display:flex;align-items:center;gap:10px;padding:8px 0;}
+.vol-label{font-size:13px;color:var(--muted);font-weight:700;min-width:60px;}
+input[type=range].vol-slider{flex:1;height:6px;border-radius:3px;background:rgba(180,80,255,0.3);outline:none;cursor:pointer;-webkit-appearance:none;margin-bottom:0;}
+input[type=range].vol-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--c2);cursor:pointer;box-shadow:0 0 8px rgba(224,64,251,0.6);}
+.vol-pct{font-family:var(--display);font-size:12px;color:var(--c2);min-width:38px;text-align:right;font-weight:900;}
 
 .scrollbox{max-height:390px;overflow-y:auto;padding-right:2px;}
 .scrollbox::-webkit-scrollbar{width:4px;}
@@ -153,6 +159,24 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
 .win-badge .win-title{font-family:var(--display);font-size:20px;color:#ffd700;letter-spacing:2px;}
 .win-badge .win-sub{color:rgba(255,215,0,0.7);font-size:12px;margin-top:3px;font-weight:700;}
 
+/* cheat modal input */
+#cheat-input{width:100%;padding:12px 16px;border-radius:13px;border:1.5px solid rgba(255,215,0,0.4);background:rgba(255,215,0,0.05);color:#fff;font-family:var(--display);font-size:15px;font-weight:700;outline:none;margin-bottom:11px;letter-spacing:2px;text-align:center;}
+#cheat-input:focus{border-color:#ffd700;box-shadow:0 0 0 3px rgba(255,215,0,0.15);}
+.cheat-result{text-align:center;font-size:13px;font-weight:700;min-height:18px;margin-bottom:9px;}
+.cheat-active-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:10px;}
+.cheat-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:900;letter-spacing:1px;}
+.cheat-badge.auto{background:rgba(56,217,245,0.2);border:1px solid rgba(56,217,245,0.5);color:var(--c4);}
+.cheat-badge.skin{background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.4);color:#ffd700;}
+
+/* sync status */
+.sync-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:10px;}
+.sync-badge.ok{background:rgba(56,217,245,0.12);border:1px solid rgba(56,217,245,0.3);color:var(--c4);}
+.sync-badge.local{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);color:#ffd700;}
+.sync-dot{width:7px;height:7px;border-radius:50%;animation:blink 1.4s ease-in-out infinite;}
+.sync-dot.ok{background:var(--c4);}
+.sync-dot.local{background:#ffd700;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
 @media(max-width:420px){.card{padding:20px 15px;}.hub-stats-grid{gap:6px;}.hub-stat-val{font-size:17px;}}
 </style>
 </head>
@@ -162,14 +186,15 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
 <div class="orb orb3"></div>
 <div id="toast"></div>
 
-<!-- ══════════════════════════════════════════════
-     AUTH
-══════════════════════════════════════════════ -->
+<!-- AUTH -->
 <div class="screen active" id="screen-auth">
   <div class="card">
     <div style="font-size:50px;text-align:center;animation:lampPulse 1.5s ease-in-out infinite;margin-bottom:7px">❤️</div>
     <div class="logo">FLAPPY HEART</div>
     <div class="sub" id="auth-subtitle">Välkommen tillbaka 💜</div>
+    <div style="text-align:center;margin-bottom:10px" id="sync-indicator">
+      <span class="sync-badge local"><span class="sync-dot local"></span>Laddar...</span>
+    </div>
     <div class="msg-err" id="auth-err"></div>
     <input type="text" id="auth-uname" placeholder="Användarnamn" maxlength="20"/>
     <input type="password" id="auth-pass" placeholder="Lösenord" maxlength="40"/>
@@ -178,17 +203,13 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HUB
-══════════════════════════════════════════════ -->
+<!-- HUB -->
 <div class="screen" id="screen-hub">
   <div class="card">
-    <!-- lamp + title -->
     <div class="lamp">🪔</div>
     <div class="logo">HUB CAMP</div>
     <div class="sub" id="hub-welcome">Välkommen!</div>
 
-    <!-- 3-col stats -->
     <div class="hub-stats-grid">
       <div class="hub-stat-box">
         <span class="hub-stat-label">🏆 Bäst</span>
@@ -204,27 +225,29 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
       </div>
     </div>
 
-    <!-- lives -->
+    <!-- sleek lives section -->
     <div class="lives-section">
       <div class="lives-header">
-        <span class="lives-title">💝 Liv</span>
-        <span class="lives-badge" id="hub-lives-badge">30 / 100</span>
+        <div class="lives-title-row">
+          <span class="lives-title">💝 Liv</span>
+          <span class="lives-count-pill" id="hub-lives-pill">30</span>
+        </div>
+        <span class="lives-pct" id="hub-lives-pct">30%</span>
       </div>
-      <!-- segmented progress bar -->
-      <div class="lives-bar-wrap">
-        <div class="lives-bar-fill" id="hub-bar-fill"></div>
-        <div class="lives-bar-segments" id="hub-bar-segs"></div>
+      <div class="hbar-wrap">
+        <div class="hbar-fill" id="hub-hbar-fill"></div>
+        <div class="hbar-glow" id="hub-hbar-glow"></div>
+        <div class="hbar-segs" id="hub-hbar-segs"></div>
+        <div class="hbar-label" id="hub-hbar-label">30 / 100</div>
       </div>
-      <!-- heart dots -->
-      <div class="lives-hearts" id="hub-hearts"></div>
-      <!-- refill countdown -->
+      <div class="lives-dots" id="hub-dots"></div>
       <div class="lives-refill-row">
-        <span class="refill-label">⏱ Refill om</span>
+        <span class="refill-label">⏱ Refill +10 om</span>
         <span class="refill-cd" id="hub-cd">00:00</span>
+        <span class="maxhp-label" id="hub-maxhp-label">Max: 100</span>
       </div>
     </div>
 
-    <!-- action buttons -->
     <button class="btn-primary" id="btnSpela" onclick="startGame()" style="width:100%">▶ SPELA</button>
     <button class="btn-secondary mt8" onclick="openModal('modal-help')">❓ Hur gör man?</button>
     <div class="btn-grid mt8">
@@ -238,57 +261,52 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     GAME
-══════════════════════════════════════════════ -->
+<!-- GAME -->
 <div class="screen" id="screen-game">
   <div style="display:flex;justify-content:space-between;width:100%;max-width:400px;margin-bottom:8px;padding:0 4px">
     <span id="game-lives-hud" style="color:rgba(210,160,255,0.75);font-size:13px;font-weight:700"></span>
     <span id="game-best-hud"  style="color:rgba(210,160,255,0.75);font-size:13px;font-weight:700"></span>
   </div>
-  <canvas id="gameCanvas" width="400" height="580"></canvas>
+  <div class="game-wrap">
+    <canvas id="gameCanvas" width="400" height="580"></canvas>
+    <button id="score-btn" onclick="openCheatMenu()">0/150</button>
+  </div>
   <div id="game-btns" style="display:flex;gap:10px;margin-top:10px"></div>
   <button class="btn-secondary" style="max-width:400px;width:100%;margin-top:8px" onclick="cleanupGame();goHub()">← Tillbaka till Hub</button>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     WIN
-══════════════════════════════════════════════ -->
+<!-- WIN -->
 <div class="screen" id="screen-win">
   <div class="card">
     <div class="win-badge">
       <span class="trophy">🏆</span>
       <div class="win-title">DU VANN!</div>
-      <div class="win-sub">150 poäng — Legendarisk! +10 liv som bonus!</div>
+      <div class="win-sub" id="win-sub-text">150 poäng — Legendarisk!</div>
     </div>
     <div style="text-align:center;font-size:38px;margin-bottom:8px" id="win-skin-emoji">❤️</div>
     <div class="stat-row"><span>🎯 Poäng denna runda</span><span class="stat-val gold" id="win-score">0</span></div>
     <div class="stat-row"><span>🏆 Bästa totalt</span><span class="stat-val gold" id="win-best">0</span></div>
     <div class="stat-row"><span>🎉 Totalt vunna</span><span class="stat-val pink" id="win-wins">0</span></div>
-    <div style="background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.25);border-radius:13px;padding:13px;margin-bottom:13px;font-size:13px;color:rgba(255,215,0,0.85);line-height:1.7;font-weight:700">
-      🌟 Du låste upp den hemliga <strong>GULD-KRONAN</strong> skin!<br>
-      Grattis – du är en Flappy Heart-legend!
+    <div class="stat-row"><span>💝 Max liv nu</span><span class="stat-val cyan" id="win-maxlives">0</span></div>
+    <div style="background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.25);border-radius:13px;padding:13px;margin-bottom:13px;font-size:13px;color:rgba(255,215,0,0.85);line-height:1.7;font-weight:700" id="win-msg">
+      🌟 Grattis – du är en Flappy Heart-legend!
     </div>
     <button class="btn-primary" onclick="goHub()" style="font-family:var(--display);letter-spacing:2px">🏠 TILL HUB</button>
     <button class="btn-secondary mt8" onclick="startGame()">🔄 Spela igen</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     LEADERBOARD
-══════════════════════════════════════════════ -->
+<!-- LEADERBOARD -->
 <div class="screen" id="screen-lb">
   <div class="card">
     <div class="logo" style="font-size:19px;margin-bottom:4px">🏆 TOPPLISTA</div>
-    <div class="sub">Top 19 • Wins visas först, sedan bästa poäng</div>
+    <div class="sub">Global • Wins visas först, sedan bästa poäng</div>
     <div class="scrollbox" id="lb-list"></div>
     <button class="btn-secondary mt10" onclick="goHub()">← Tillbaka</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SKINS
-══════════════════════════════════════════════ -->
+<!-- SKINS -->
 <div class="screen" id="screen-skins">
   <div class="card">
     <div class="logo" style="font-size:19px;margin-bottom:4px">💜 SKINS</div>
@@ -298,15 +316,24 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SETTINGS
-══════════════════════════════════════════════ -->
+<!-- SETTINGS -->
 <div class="screen" id="screen-settings">
   <div class="card">
     <div class="logo" style="font-size:19px;margin-bottom:4px">⚙️ INSTÄLLNINGAR</div>
     <div class="sub" id="settings-user-label"></div>
     <div class="scrollbox">
-
+      <div class="settings-section">
+        <div class="settings-label">🔊 Ljud</div>
+        <div class="toggle-row">
+          <span class="toggle-label">Bakgrundsmusik</span>
+          <label class="toggle"><input type="checkbox" id="music-toggle" onchange="toggleMusic()"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="vol-row">
+          <span class="vol-label">Volym</span>
+          <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="50" oninput="setVolume(this.value)"/>
+          <span class="vol-pct" id="vol-pct">50%</span>
+        </div>
+      </div>
       <div class="settings-section">
         <div class="settings-label">✏️ Byt användarnamn</div>
         <input type="text" id="set-new-name" placeholder="Nytt användarnamn" maxlength="20"/>
@@ -314,7 +341,6 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
         <div class="msg-ok"  id="set-name-ok"></div>
         <button class="btn-secondary" onclick="changeName()">Spara nytt namn</button>
       </div>
-
       <div class="settings-section">
         <div class="settings-label">🔑 Byt lösenord</div>
         <input type="password" id="set-old-pass"  placeholder="Nuvarande lösenord"/>
@@ -324,7 +350,6 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
         <div class="msg-ok"  id="set-pass-ok"></div>
         <button class="btn-secondary" onclick="changePassword()">Byt lösenord</button>
       </div>
-
       <div class="settings-section">
         <div class="settings-label">📊 Din statistik</div>
         <div class="stat-row" style="margin-bottom:6px"><span>🏆 Bästa poäng</span><span class="stat-val gold" id="set-stat-hs">0</span></div>
@@ -332,14 +357,12 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
         <div class="stat-row" style="margin-bottom:6px"><span>🎮 Spel spelade</span><span class="stat-val cyan" id="set-stat-games">0</span></div>
         <div class="stat-row" style="margin-bottom:0"><span>💜 Skins ägda</span><span class="stat-val" id="set-stat-skins">0</span></div>
       </div>
-
       <div class="settings-section">
         <div class="settings-label">🔄 Nollställ poäng</div>
         <div style="color:var(--muted);font-size:12px;margin-bottom:9px">Nollställer ditt bästa resultat permanent.</div>
         <div class="msg-ok" id="set-reset-ok"></div>
         <button class="btn-danger" onclick="resetScore()">Nollställ bästa poäng</button>
       </div>
-
       <div class="settings-section">
         <div class="settings-label">🗑️ Radera konto</div>
         <div style="color:rgba(255,120,120,0.7);font-size:12px;margin-bottom:9px">Permanent — kan inte ångras!</div>
@@ -353,9 +376,7 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MODALS
-══════════════════════════════════════════════ -->
+<!-- MODALS -->
 <div class="modal-bg" id="modal-help">
   <div class="modal-card">
     <div class="modal-title">❓ Hur gör man?</div>
@@ -366,13 +387,15 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
       <p style="color:var(--c3);font-weight:800;margin-bottom:3px">🎯 Mål</p>
       <p>• Flyg igenom lila rören utan att krascha</p>
       <p>• Varje passage = 1 poäng</p>
-      <p>• Kraschar du → −1 liv</p>
+      <p>• Kraschar du → −1 liv (→ lobby vid 0 liv)</p>
       <p>• <strong style="color:#ffd700">Nå 150 poäng för att VINNA! 🏆</strong></p><br>
-      <p style="color:var(--c3);font-weight:800;margin-bottom:3px">💝 Liv</p>
-      <p>• Max 100 liv, refill +10 var 30:e minut</p>
-      <p>• Vinner du får du också +10 liv bonus!</p><br>
-      <p style="color:var(--c3);font-weight:800;margin-bottom:3px">🎨 Skins</p>
-      <p>• Lås upp nya hjärtan med höga poäng</p>
+      <p style="color:var(--c3);font-weight:800;margin-bottom:3px">💝 Liv & Max-liv</p>
+      <p>• Startar med 30 liv, refill +10 var 30:e minut</p>
+      <p>• Varje vinst ger +10 permanent max liv (max 100)</p><br>
+      <p style="color:var(--c3);font-weight:800;margin-bottom:3px">🕹️ Cheat-koder</p>
+      <p>• Klicka på poäng-knappen under spel → ange kod</p>
+      <p>• HolyAuto = AI spelar (inga poäng/belöningar)</p>
+      <p>• SkinChange = tillfällig Money Heart skin</p>
     </div>
     <button class="btn-primary mt16" onclick="closeModal('modal-help')">Förstått!</button>
   </div>
@@ -389,236 +412,477 @@ input:focus{border-color:var(--c2);box-shadow:0 0 0 3px rgba(224,64,251,0.15);}
   </div>
 </div>
 
+<!-- CHEAT MODAL -->
+<div class="modal-bg" id="modal-cheat">
+  <div class="modal-card">
+    <div class="modal-title">⏸ PAUSAD — Cheat-kod</div>
+    <div class="cheat-active-badges" id="cheat-active-badges"></div>
+    <input type="text" id="cheat-input" placeholder="ANGE KOD..." maxlength="30" autocomplete="off" spellcheck="false"/>
+    <div class="cheat-result" id="cheat-result"></div>
+    <button class="btn-primary" onclick="applyCheat()">✅ Aktivera</button>
+    <button class="btn-secondary mt8" onclick="closeCheatMenu()">▶ Fortsätt spela</button>
+    <div style="margin-top:10px;padding:10px;background:rgba(255,215,0,0.05);border-radius:10px;border:1px solid rgba(255,215,0,0.15)">
+      <div style="font-size:10px;color:rgba(255,215,0,0.5);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Tillgängliga koder</div>
+      <div style="font-family:var(--display);font-size:11px;color:rgba(255,215,0,0.7);line-height:2">HolyAuto &nbsp;•&nbsp; SkinChange</div>
+    </div>
+  </div>
+</div>
+
 <script>
+/* ═══════════════════════════════════════
+   GLOBAL DB — uses window.storage (Anthropic artifact persistence)
+   Falls back to localStorage when not available
+═══════════════════════════════════════ */
+const STORAGE_KEY = 'fh_global_v1';
+const SES_KEY = 'fh_ses_v4';
+let globalDB = { users: {} };
+let storageMode = 'loading'; // 'cloud' | 'local'
+
+async function loadGlobalDB() {
+  try {
+    const result = await window.storage.get(STORAGE_KEY, true); // shared=true
+    if (result && result.value) {
+      globalDB = JSON.parse(result.value);
+      storageMode = 'cloud';
+    } else {
+      // try migrating from old localStorage
+      const old = localStorage.getItem('fh_db_v3');
+      if (old) { try { const o = JSON.parse(old); if (o.users) globalDB = o; } catch {} }
+      storageMode = 'cloud';
+    }
+  } catch(e) {
+    // window.storage not available, use localStorage
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) globalDB = JSON.parse(raw);
+      else {
+        const old = localStorage.getItem('fh_db_v3');
+        if (old) { try { const o = JSON.parse(old); if (o.users) globalDB = o; } catch {} }
+      }
+    } catch {}
+    storageMode = 'local';
+  }
+  updateSyncBadge();
+}
+
+async function saveGlobalDB() {
+  const str = JSON.stringify(globalDB);
+  if (storageMode === 'cloud') {
+    try {
+      await window.storage.set(STORAGE_KEY, str, true);
+      return;
+    } catch {}
+  }
+  localStorage.setItem(STORAGE_KEY, str);
+}
+
+function updateSyncBadge() {
+  const el = document.getElementById('sync-indicator');
+  if (!el) return;
+  if (storageMode === 'cloud') {
+    el.innerHTML = '<span class="sync-badge ok"><span class="sync-dot ok"></span>Global synk aktiv</span>';
+  } else {
+    el.innerHTML = '<span class="sync-badge local"><span class="sync-dot local"></span>Lokal lagring</span>';
+  }
+}
+
+function getDB() { return globalDB; }
+async function saveDB(d) { globalDB = d; await saveGlobalDB(); }
+
+function saveSession(u) { localStorage.setItem(SES_KEY, JSON.stringify({ u, exp: Date.now() + 30*864e5 })); }
+function loadSession() { try { const s = JSON.parse(localStorage.getItem(SES_KEY)); if (s && s.exp > Date.now()) return s.u; } catch {} return null; }
+function killSession() { localStorage.removeItem(SES_KEY); }
+
 /* ═══════════════════════════════════════
    CRYPTO
 ═══════════════════════════════════════ */
-async function hashPw(pw){
-  const enc=new TextEncoder(), salt=crypto.getRandomValues(new Uint8Array(16));
-  const sh=[...salt].map(b=>b.toString(16).padStart(2,'0')).join('');
-  const km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']);
-  const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},km,256);
-  const hh=[...new Uint8Array(bits)].map(b=>b.toString(16).padStart(2,'0')).join('');
+async function hashPw(pw) {
+  const enc = new TextEncoder(), salt = crypto.getRandomValues(new Uint8Array(16));
+  const sh = [...salt].map(b => b.toString(16).padStart(2,'0')).join('');
+  const km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({ name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' }, km, 256);
+  const hh = [...new Uint8Array(bits)].map(b => b.toString(16).padStart(2,'0')).join('');
   return `${sh}:${hh}`;
 }
-async function checkPw(pw,stored){
-  const [sh,storedH]=stored.split(':');
-  const salt=new Uint8Array(sh.match(/.{2}/g).map(b=>parseInt(b,16)));
-  const enc=new TextEncoder();
-  const km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']);
-  const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},km,256);
-  const hh=[...new Uint8Array(bits)].map(b=>b.toString(16).padStart(2,'0')).join('');
-  return hh===storedH;
+async function checkPw(pw, stored) {
+  const [sh, storedH] = stored.split(':');
+  const salt = new Uint8Array(sh.match(/.{2}/g).map(b => parseInt(b,16)));
+  const enc = new TextEncoder();
+  const km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({ name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' }, km, 256);
+  const hh = [...new Uint8Array(bits)].map(b => b.toString(16).padStart(2,'0')).join('');
+  return hh === storedH;
 }
-
-/* ═══════════════════════════════════════
-   DB
-═══════════════════════════════════════ */
-const DB_KEY='fh_db_v3', SES_KEY='fh_ses_v3';
-function getDB(){try{return JSON.parse(localStorage.getItem(DB_KEY))||{users:{}};}catch{return{users:{}};}}
-function saveDB(d){localStorage.setItem(DB_KEY,JSON.stringify(d));}
-function saveSession(u){localStorage.setItem(SES_KEY,JSON.stringify({u,exp:Date.now()+30*864e5}));}
-function loadSession(){try{const s=JSON.parse(localStorage.getItem(SES_KEY));if(s&&s.exp>Date.now())return s.u;}catch{}return null;}
-function killSession(){localStorage.removeItem(SES_KEY);}
 
 /* ═══════════════════════════════════════
    CONSTANTS
 ═══════════════════════════════════════ */
-const MAX_LIVES=100, WIN_SCORE=150, WIN_BONUS=10, REFILL_AMOUNT=10;
-const SKINS=[
-  {id:'classic',label:'Classic',emoji:'❤️', unlockAt:0,  tint:'#ff4d6d',draw:'solid'},
-  {id:'golden', label:'Golden', emoji:'💛', unlockAt:10, tint:'#FFD700',draw:'solid'},
-  {id:'purple', label:'Purple', emoji:'💜', unlockAt:25, tint:'#c77dff',draw:'solid'},
-  {id:'rainbow',label:'Rainbow',emoji:'🌈', unlockAt:50, tint:'rainbow',draw:'gradient'},
-  {id:'ice',    label:'Ice',    emoji:'💙', unlockAt:75, tint:'#48cae4',draw:'solid'},
-  {id:'fire',   label:'Fire',   emoji:'🔥', unlockAt:100,tint:'#ff6b35',draw:'fire'},
-  {id:'dark',   label:'Dark',   emoji:'🖤', unlockAt:120,tint:'#330033',draw:'dark'},
-  {id:'crown',  label:'Kronan 👑',emoji:'👑❤️',unlockAt:150,tint:'#ffd700',draw:'crown'},
+const BASE_MAX_LIVES = 30;
+const HARD_CAP_LIVES = 100;
+const WIN_SCORE = 150;
+const WIN_BONUS_LIVES = 10;
+const WIN_MAX_BONUS = 10; // +10 maxHP per win
+const REFILL_AMOUNT = 10;
+const REFILL_INTERVAL_MS = 30 * 60 * 1000;
+
+const SKINS = [
+  {id:'classic', label:'Classic',    emoji:'❤️',  unlockAt:0,   tint:'#ff4d6d', draw:'solid'},
+  {id:'golden',  label:'Golden',     emoji:'💛',  unlockAt:10,  tint:'#FFD700', draw:'solid'},
+  {id:'purple',  label:'Purple',     emoji:'💜',  unlockAt:25,  tint:'#c77dff', draw:'solid'},
+  {id:'rainbow', label:'Rainbow',    emoji:'🌈',  unlockAt:50,  tint:'rainbow', draw:'gradient'},
+  {id:'ice',     label:'Ice',        emoji:'💙',  unlockAt:75,  tint:'#48cae4', draw:'solid'},
+  {id:'fire',    label:'Fire',       emoji:'🔥',  unlockAt:100, tint:'#ff6b35', draw:'fire'},
+  {id:'dark',    label:'Dark',       emoji:'🖤',  unlockAt:120, tint:'#330033', draw:'dark'},
+  {id:'crown',   label:'Kronan 👑',  emoji:'👑❤️',unlockAt:150, tint:'#ffd700', draw:'crown'},
+  {id:'money',   label:'Money Heart',emoji:'💰',  unlockAt:999, tint:'#00c853', draw:'money'}, // cheat skin
 ];
 
-let currentUser=null, authMode='login', cdInterval=null;
+let currentUser = null, authMode = 'login', cdInterval = null;
+
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
+function getMaxLives(rec) {
+  const wins = rec.wins || 0;
+  return Math.min(HARD_CAP_LIVES, BASE_MAX_LIVES + wins * WIN_MAX_BONUS);
+}
+
+// Apply offline regeneration on login
+function applyOfflineRegen(rec) {
+  const now = Date.now();
+  const last = rec.lastSeen || now;
+  const elapsed = now - last;
+  const intervals = Math.floor(elapsed / REFILL_INTERVAL_MS);
+  if (intervals > 0) {
+    const maxL = getMaxLives(rec);
+    const gained = Math.min(intervals * REFILL_AMOUNT, maxL - (rec.lives || 0));
+    if (gained > 0) {
+      rec.lives = Math.min(maxL, (rec.lives || 0) + gained);
+      return gained;
+    }
+  }
+  rec.lastSeen = now;
+  return 0;
+}
 
 /* ═══════════════════════════════════════
    SCREEN ROUTER
 ═══════════════════════════════════════ */
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+/* ═══════════════════════════════════════
+   AUDIO
+═══════════════════════════════════════ */
+let audioCtx = null, musicGain = null, musicOscNodes = [], musicPlaying = false;
+let audioSettings = { musicOn: false, volume: 50 };
+
+function initAudio() {
+  const saved = localStorage.getItem('fh_audio');
+  if (saved) { try { audioSettings = JSON.parse(saved); } catch {} }
+  document.getElementById('music-toggle').checked = audioSettings.musicOn;
+  document.getElementById('vol-slider').value = audioSettings.volume;
+  document.getElementById('vol-pct').textContent = audioSettings.volume + '%';
+  if (audioSettings.musicOn) startMusic();
+}
+function saveAudioSettings() { localStorage.setItem('fh_audio', JSON.stringify(audioSettings)); }
+function toggleMusic() {
+  audioSettings.musicOn = document.getElementById('music-toggle').checked;
+  saveAudioSettings();
+  if (audioSettings.musicOn) startMusic(); else stopMusic();
+}
+function setVolume(v) {
+  audioSettings.volume = parseInt(v);
+  document.getElementById('vol-pct').textContent = v + '%';
+  saveAudioSettings();
+  if (musicGain) musicGain.gain.value = audioSettings.volume / 100 * 0.15;
+}
+function startMusic() {
+  if (musicPlaying) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    musicGain = audioCtx.createGain();
+    musicGain.gain.value = audioSettings.volume / 100 * 0.15;
+    musicGain.connect(audioCtx.destination);
+    // simple chiptune loop: play notes in sequence
+    const notes = [261.6, 329.6, 392, 523.2, 392, 329.6, 261.6, 220];
+    let i = 0;
+    function playNote() {
+      if (!musicPlaying) return;
+      const osc = audioCtx.createOscillator();
+      osc.type = 'square';
+      osc.frequency.value = notes[i % notes.length];
+      osc.connect(musicGain);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.18);
+      i++;
+      setTimeout(playNote, 220);
+    }
+    musicPlaying = true;
+    playNote();
+  } catch(e) { musicPlaying = false; }
+}
+function stopMusic() {
+  musicPlaying = false;
+  if (musicGain) { try { musicGain.disconnect(); } catch {} musicGain = null; }
+}
+function playJumpSound() {
+  if (!audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.08);
+    g.gain.setValueAtTime(audioSettings.volume / 100 * 0.2, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+    osc.connect(g); g.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.12);
+  } catch {}
+}
+function playDeathSound() {
+  if (!audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.4);
+    g.gain.setValueAtTime(audioSettings.volume / 100 * 0.25, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+    osc.connect(g); g.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+  } catch {}
 }
 
 /* ═══════════════════════════════════════
    INIT
 ═══════════════════════════════════════ */
-window.onload=()=>{
-  const u=loadSession();
-  if(u){const db=getDB();if(db.users[u]){currentUser=u;enterHub();return;}killSession();}
+window.onload = async () => {
+  await loadGlobalDB();
+  const u = loadSession();
+  if (u) {
+    const db = getDB();
+    if (db.users[u]) {
+      currentUser = u;
+      const gained = applyOfflineRegen(db.users[u]);
+      db.users[u].lastSeen = Date.now();
+      await saveDB(db);
+      if (gained > 0) setTimeout(() => toast(`💝 +${gained} liv offline-regen!`), 800);
+      enterHub();
+      initAudio();
+      return;
+    }
+    killSession();
+  }
   showScreen('auth');
 };
 
 /* ═══════════════════════════════════════
    AUTH
 ═══════════════════════════════════════ */
-function toggleAuthMode(){
-  authMode=authMode==='login'?'register':'login';
-  document.getElementById('auth-err').textContent='';
-  if(authMode==='login'){
-    document.getElementById('auth-subtitle').textContent='Välkommen tillbaka 💜';
-    document.getElementById('auth-btn').textContent='🔓 Logga in';
-    document.getElementById('auth-toggle').textContent='Inget konto? Registrera dig';
-  }else{
-    document.getElementById('auth-subtitle').textContent='Skapa ditt konto 🌟';
-    document.getElementById('auth-btn').textContent='🚀 Registrera';
-    document.getElementById('auth-toggle').textContent='Har konto? Logga in';
+function toggleAuthMode() {
+  authMode = authMode === 'login' ? 'register' : 'login';
+  document.getElementById('auth-err').textContent = '';
+  if (authMode === 'login') {
+    document.getElementById('auth-subtitle').textContent = 'Välkommen tillbaka 💜';
+    document.getElementById('auth-btn').textContent = '🔓 Logga in';
+    document.getElementById('auth-toggle').textContent = 'Inget konto? Registrera dig';
+  } else {
+    document.getElementById('auth-subtitle').textContent = 'Skapa ditt konto 🌟';
+    document.getElementById('auth-btn').textContent = '🚀 Registrera';
+    document.getElementById('auth-toggle').textContent = 'Har konto? Logga in';
   }
 }
-document.getElementById('auth-uname').addEventListener('keydown',e=>{if(e.key==='Enter')handleAuth();});
-document.getElementById('auth-pass') .addEventListener('keydown',e=>{if(e.key==='Enter')handleAuth();});
+document.getElementById('auth-uname').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
+document.getElementById('auth-pass').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
 
-async function handleAuth(){
-  const u=document.getElementById('auth-uname').value.trim();
-  const p=document.getElementById('auth-pass').value;
-  const errEl=document.getElementById('auth-err');
-  errEl.textContent='';
-  if(!u||!p){errEl.textContent='Fyll i alla fält';return;}
-  const btn=document.getElementById('auth-btn');
-  btn.disabled=true;btn.textContent='⏳ Väntar…';
-  const db=getDB();
-  try{
-    if(authMode==='register'){
-      if(db.users[u]){errEl.textContent='Användarnamnet är taget';}
-      else{
-        const ph=await hashPw(p);
-        db.users[u]={ph,highScore:0,lives:MAX_LIVES,skin:'classic',skins:['classic'],gamesPlayed:0,wins:0};
-        saveDB(db);saveSession(u);currentUser=u;enterHub();
+async function handleAuth() {
+  const u = document.getElementById('auth-uname').value.trim();
+  const p = document.getElementById('auth-pass').value;
+  const errEl = document.getElementById('auth-err');
+  errEl.textContent = '';
+  if (!u || !p) { errEl.textContent = 'Fyll i alla fält'; return; }
+  const btn = document.getElementById('auth-btn');
+  btn.disabled = true; btn.textContent = '⏳ Väntar…';
+  // Refresh DB from storage before auth
+  await loadGlobalDB();
+  const db = getDB();
+  try {
+    if (authMode === 'register') {
+      if (db.users[u]) { errEl.textContent = 'Användarnamnet är taget'; }
+      else {
+        const ph = await hashPw(p);
+        db.users[u] = {
+          ph, highScore:0, lives:BASE_MAX_LIVES, skin:'classic',
+          skins:['classic'], gamesPlayed:0, wins:0,
+          lastSeen: Date.now()
+        };
+        await saveDB(db);
+        saveSession(u); currentUser = u;
+        initAudio(); enterHub();
       }
-    }else{
-      const rec=db.users[u];
-      if(!rec){errEl.textContent='Användaren finns inte';}
-      else if(!(await checkPw(p,rec.ph))){errEl.textContent='Fel lösenord';}
-      else{saveSession(u);currentUser=u;enterHub();}
+    } else {
+      const rec = db.users[u];
+      if (!rec) { errEl.textContent = 'Användaren finns inte'; }
+      else if (!(await checkPw(p, rec.ph))) { errEl.textContent = 'Fel lösenord'; }
+      else {
+        const gained = applyOfflineRegen(rec);
+        rec.lastSeen = Date.now();
+        await saveDB(db);
+        saveSession(u); currentUser = u;
+        initAudio(); enterHub();
+        if (gained > 0) setTimeout(() => toast(`💝 +${gained} liv offline-regen!`), 800);
+      }
     }
-  }catch{errEl.textContent='Något gick fel — försök igen';}
-  btn.disabled=false;
-  btn.textContent=authMode==='login'?'🔓 Logga in':'🚀 Registrera';
+  } catch(e) { errEl.textContent = 'Något gick fel — försök igen'; console.error(e); }
+  btn.disabled = false;
+  btn.textContent = authMode === 'login' ? '🔓 Logga in' : '🚀 Registrera';
 }
 
-function logout(){
-  killSession();currentUser=null;stopCd();
-  document.getElementById('auth-uname').value='';
-  document.getElementById('auth-pass').value='';
-  document.getElementById('auth-err').textContent='';
+async function logout() {
+  const db = getDB();
+  if (db.users[currentUser]) { db.users[currentUser].lastSeen = Date.now(); await saveDB(db); }
+  killSession(); currentUser = null; stopCd(); stopMusic();
+  document.getElementById('auth-uname').value = '';
+  document.getElementById('auth-pass').value = '';
+  document.getElementById('auth-err').textContent = '';
   showScreen('auth');
 }
 
 /* ═══════════════════════════════════════
    HUB
 ═══════════════════════════════════════ */
-function enterHub(){refreshHubUI();startCd();showScreen('hub');}
-function goHub(){refreshHubUI();showScreen('hub');}
+function enterHub() { refreshHubUI(); startCd(); showScreen('hub'); }
+function goHub() { refreshHubUI(); showScreen('hub'); }
 
-function refreshHubUI(){
-  const db=getDB(), rec=db.users[currentUser];
-  if(!rec)return;
+function refreshHubUI() {
+  const db = getDB(), rec = db.users[currentUser];
+  if (!rec) return;
+  if (rec.wins === undefined) rec.wins = 0;
+  if (rec.gamesPlayed === undefined) rec.gamesPlayed = 0;
 
-  // ensure fields exist for old accounts
-  if(rec.wins===undefined) rec.wins=0;
-  if(rec.gamesPlayed===undefined) rec.gamesPlayed=0;
+  const skin = SKINS.find(s => s.id === rec.skin) || SKINS[0];
+  document.getElementById('hub-welcome').textContent = `Välkommen, ${currentUser}! ${skin.emoji}`;
+  document.getElementById('hub-best').textContent = rec.highScore || 0;
+  document.getElementById('hub-wins').textContent = rec.wins || 0;
+  document.getElementById('hub-games').textContent = rec.gamesPlayed || 0;
 
-  const skin=SKINS.find(s=>s.id===rec.skin)||SKINS[0];
-  document.getElementById('hub-welcome').textContent=`Välkommen, ${currentUser}! ${skin.emoji}`;
-  document.getElementById('hub-best').textContent=rec.highScore||0;
-  document.getElementById('hub-wins').textContent=rec.wins||0;
-  document.getElementById('hub-games').textContent=rec.gamesPlayed||0;
+  const maxL = getMaxLives(rec);
+  const lives = Math.min(rec.lives || 0, maxL);
+  const pct = lives / maxL;
 
-  // lives
-  const lives=rec.lives||0;
-  document.getElementById('hub-lives-badge').textContent=`${lives} / ${MAX_LIVES}`;
-  document.getElementById('hub-lives-badge').style.color=lives<10?'#ff6b8a':lives<30?'var(--c5)':'var(--c3)';
+  // pill
+  const pill = document.getElementById('hub-lives-pill');
+  pill.textContent = lives;
+  if (lives <= 5) { pill.style.background = 'rgba(255,77,109,0.4)'; pill.style.color = '#ff8fab'; }
+  else if (lives <= 10) { pill.style.background = 'rgba(255,140,0,0.3)'; pill.style.color = '#ffd060'; }
+  else { pill.style.background = 'rgba(255,110,199,0.25)'; pill.style.color = 'var(--c3)'; }
+
+  document.getElementById('hub-lives-pct').textContent = Math.round(pct * 100) + '%';
+  document.getElementById('hub-maxhp-label').textContent = `Max: ${maxL}`;
 
   // bar
-  const pct=Math.min(lives/MAX_LIVES,1);
-  const fill=document.getElementById('hub-bar-fill');
-  fill.style.width=(pct*100)+'%';
-  // color based on amount
-  if(lives<=10)      fill.style.background='linear-gradient(90deg,#ff4d4d,#ff6b8a)';
-  else if(lives<=30) fill.style.background='linear-gradient(90deg,#ff8c00,#fee440)';
-  else if(lives<=60) fill.style.background='linear-gradient(90deg,var(--c1),var(--c2))';
-  else               fill.style.background='linear-gradient(90deg,var(--c1),var(--c2),var(--c3))';
+  const fill = document.getElementById('hub-hbar-fill');
+  fill.style.width = (pct * 100) + '%';
+  if (lives <= 5)       fill.style.background = 'linear-gradient(90deg,#ff1744,#ff4d6d)';
+  else if (lives <= 10) fill.style.background = 'linear-gradient(90deg,#ff8f00,#ffd740)';
+  else if (lives <= 20) fill.style.background = 'linear-gradient(90deg,#aa00ff,#e040fb)';
+  else                  fill.style.background = 'linear-gradient(90deg,#7b2ff7,#e040fb,#ff6ec7)';
 
-  // segment markers every 10 lives
-  const segsEl=document.getElementById('hub-bar-segs');
-  segsEl.innerHTML='';
-  for(let i=0;i<10;i++){const s=document.createElement('div');s.className='lives-seg';segsEl.appendChild(s);}
+  // glow
+  document.getElementById('hub-hbar-glow').style.display = pct > 0.1 ? 'block' : 'none';
 
-  // heart dots — show max 50 to avoid overflow, each = 2 lives
-  const heartsEl=document.getElementById('hub-hearts');
-  heartsEl.innerHTML='';
-  const dots=50; // 50 dots × 2 = 100 max
-  for(let i=0;i<dots;i++){
-    const sp=document.createElement('span');
-    sp.className='lh '+(i*2<lives?'alive':'dead');
-    sp.textContent='❤️';
-    heartsEl.appendChild(sp);
+  // segments (one per 10 lives)
+  const segsEl = document.getElementById('hub-hbar-segs');
+  segsEl.innerHTML = '';
+  const numSegs = Math.round(maxL / 10);
+  for (let i = 0; i < numSegs; i++) {
+    const s = document.createElement('div'); s.className = 'hbar-seg'; segsEl.appendChild(s);
+  }
+
+  // label
+  document.getElementById('hub-hbar-label').textContent = `${lives} / ${maxL}`;
+
+  // dots — 1 dot per life, max 50 shown
+  const dotsEl = document.getElementById('hub-dots');
+  dotsEl.innerHTML = '';
+  const dotCount = Math.min(maxL, 50);
+  const livesPerDot = maxL / dotCount;
+  for (let i = 0; i < dotCount; i++) {
+    const d = document.createElement('span');
+    d.className = 'ldot ' + ((i + 1) * livesPerDot <= lives + 0.5 ? 'alive' : 'dead');
+    dotsEl.appendChild(d);
   }
 
   // spela button
-  const spela=document.getElementById('btnSpela');
-  if(lives<=0){
-    spela.disabled=true;
-    spela.style.cssText+='background:rgba(80,80,100,0.3)!important;box-shadow:none!important;animation:none!important;';
-  }else{
-    spela.disabled=false;
-    spela.style.background='';spela.style.boxShadow='';spela.style.animation='';
+  const spela = document.getElementById('btnSpela');
+  if (lives <= 0) {
+    spela.disabled = true;
+    spela.style.cssText += 'background:rgba(80,80,100,0.3)!important;box-shadow:none!important;animation:none!important;';
+  } else {
+    spela.disabled = false;
+    spela.style.background = ''; spela.style.boxShadow = ''; spela.style.animation = '';
   }
 }
 
-/* ── countdown + auto-refill ── */
-function msToNext(){
-  const now=new Date();
-  const msIn=(now.getMinutes()%30)*60000+now.getSeconds()*1000+now.getMilliseconds();
-  return 30*60000-msIn;
+function msToNext() {
+  const now = new Date();
+  return REFILL_INTERVAL_MS - ((now.getMinutes() % 30) * 60000 + now.getSeconds() * 1000 + now.getMilliseconds());
 }
-function fmtCd(ms){
-  if(ms<=0)return'00:00';
-  const t=Math.ceil(ms/1000);
-  return`${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`;
+function fmtCd(ms) {
+  if (ms <= 0) return '00:00';
+  const t = Math.ceil(ms / 1000);
+  return `${String(Math.floor(t / 60)).padStart(2,'0')}:${String(t % 60).padStart(2,'0')}`;
 }
-function startCd(){
+function startCd() {
   stopCd();
-  cdInterval=setInterval(()=>{
-    const ms=msToNext();
-    const el=document.getElementById('hub-cd');
-    if(el)el.textContent=fmtCd(ms);
-    if(ms<1200){
-      const db=getDB(),rec=db.users[currentUser];
-      if(rec&&rec.lives<MAX_LIVES){
-        rec.lives=Math.min(MAX_LIVES,rec.lives+REFILL_AMOUNT);
-        saveDB(db);refreshHubUI();toast(`💝 +${REFILL_AMOUNT} liv!`);
+  cdInterval = setInterval(async () => {
+    const ms = msToNext();
+    const el = document.getElementById('hub-cd');
+    if (el) el.textContent = fmtCd(ms);
+    if (ms < 1200) {
+      await loadGlobalDB(); // re-sync before writing
+      const db = getDB(), rec = db.users[currentUser];
+      if (rec) {
+        const maxL = getMaxLives(rec);
+        if (rec.lives < maxL) {
+          rec.lives = Math.min(maxL, rec.lives + REFILL_AMOUNT);
+          rec.lastSeen = Date.now();
+          await saveDB(db);
+          refreshHubUI();
+          toast(`💝 +${REFILL_AMOUNT} liv!`);
+        }
       }
     }
-  },800);
+  }, 800);
 }
-function stopCd(){if(cdInterval){clearInterval(cdInterval);cdInterval=null;}}
+function stopCd() { if (cdInterval) { clearInterval(cdInterval); cdInterval = null; } }
 
 /* ═══════════════════════════════════════
    LEADERBOARD
-   Sort: wins DESC, then highScore DESC
 ═══════════════════════════════════════ */
-function goLeaderboard(){
-  const db=getDB();
-  const rows=Object.entries(db.users)
-    .map(([name,d])=>({name,hs:d.highScore||0,wins:d.wins||0}))
-    .sort((a,b)=>b.wins-a.wins||b.hs-a.hs)
-    .slice(0,19);
-  const list=document.getElementById('lb-list');
-  list.innerHTML='';
-  if(!rows.length){list.innerHTML='<p style="text-align:center;color:var(--muted);padding:24px">Inga spelare än — bli den förste!</p>';showScreen('lb');return;}
-  rows.forEach((e,i)=>{
-    const div=document.createElement('div');
-    div.className='lb-row'+(e.name===currentUser?' me':'')+(i===0?' gold':i===1?' silver':i===2?' bronze':'');
-    const rank=i<3?['🥇','🥈','🥉'][i]:`#${i+1}`;
-    const winsHtml=e.wins>0?`<span class="lb-wins">🏆 ${e.wins} wins</span>`:'';
-    div.innerHTML=`<span class="lb-rank">${rank}</span><span class="lb-name">${e.name}${e.name===currentUser?' 👈':''}</span>${winsHtml}<span class="lb-score">${e.hs}</span>`;
+async function goLeaderboard() {
+  await loadGlobalDB();
+  const db = getDB();
+  const rows = Object.entries(db.users)
+    .map(([name, d]) => ({ name, hs: d.highScore || 0, wins: d.wins || 0 }))
+    .sort((a, b) => b.wins - a.wins || b.hs - a.hs)
+    .slice(0, 19);
+  const list = document.getElementById('lb-list');
+  list.innerHTML = '';
+  if (!rows.length) {
+    list.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px">Inga spelare än — bli den förste!</p>';
+    showScreen('lb'); return;
+  }
+  rows.forEach((e, i) => {
+    const div = document.createElement('div');
+    div.className = 'lb-row' + (e.name === currentUser ? ' me' : '') + (i === 0 ? ' gold' : i === 1 ? ' silver' : i === 2 ? ' bronze' : '');
+    const rank = i < 3 ? ['🥇','🥈','🥉'][i] : `#${i+1}`;
+    const winsHtml = e.wins > 0 ? `<span class="lb-wins">🏆 ${e.wins}</span>` : '';
+    div.innerHTML = `<span class="lb-rank">${rank}</span><span class="lb-name">${e.name}${e.name === currentUser ? ' 👈' : ''}</span>${winsHtml}<span class="lb-score">${e.hs}</span>`;
     list.appendChild(div);
   });
   showScreen('lb');
@@ -627,340 +891,510 @@ function goLeaderboard(){
 /* ═══════════════════════════════════════
    SKINS
 ═══════════════════════════════════════ */
-function goSkins(){renderSkins();showScreen('skins');}
-function renderSkins(){
-  const db=getDB(),rec=db.users[currentUser];
-  const grid=document.getElementById('skins-grid');
-  grid.innerHTML='';
-  SKINS.forEach(sk=>{
-    const owned=rec.skins.includes(sk.id),equipped=rec.skin===sk.id;
-    const card=document.createElement('div');
-    card.className='skin-card'+(owned?' owned':'')+(equipped?' equipped':'');
-    card.innerHTML=`<div class="skin-emoji">${sk.emoji}</div><div class="skin-name">${sk.label}</div>`
-      +(!owned?`<div class="skin-req">${sk.unlockAt}+ pts</div>`:'')
-      +(owned&&equipped?`<div class="skin-badge">✓ Utrustad</div>`:'')
-      +(owned&&!equipped?`<div class="skin-req" style="color:rgba(210,170,255,0.55)">Klicka</div>`:'');
-    if(owned) card.onclick=()=>equipSkin(sk.id);
+function goSkins() { renderSkins(); showScreen('skins'); }
+function renderSkins() {
+  const db = getDB(), rec = db.users[currentUser];
+  const grid = document.getElementById('skins-grid');
+  grid.innerHTML = '';
+  SKINS.filter(sk => sk.id !== 'money').forEach(sk => { // money is cheat-only
+    const owned = rec.skins.includes(sk.id), equipped = rec.skin === sk.id;
+    const card = document.createElement('div');
+    card.className = 'skin-card' + (owned ? ' owned' : '') + (equipped ? ' equipped' : '');
+    card.innerHTML = `<div class="skin-emoji">${sk.emoji}</div><div class="skin-name">${sk.label}</div>`
+      + (!owned ? `<div class="skin-req">${sk.unlockAt}+ pts</div>` : '')
+      + (owned && equipped ? `<div class="skin-badge">✓ Utrustad</div>` : '')
+      + (owned && !equipped ? `<div class="skin-req" style="color:rgba(210,170,255,0.55)">Klicka</div>` : '');
+    if (owned) card.onclick = () => equipSkin(sk.id);
     grid.appendChild(card);
   });
 }
-function equipSkin(id){
-  const db=getDB();db.users[currentUser].skin=id;saveDB(db);
-  renderSkins();refreshHubUI();toast('🎨 Skin utrustat!');
+async function equipSkin(id) {
+  const db = getDB(); db.users[currentUser].skin = id; await saveDB(db);
+  renderSkins(); refreshHubUI(); toast('🎨 Skin utrustat!');
 }
 
 /* ═══════════════════════════════════════
    SETTINGS
 ═══════════════════════════════════════ */
-function goSettings(){
-  const db=getDB(),rec=db.users[currentUser];
-  document.getElementById('settings-user-label').textContent=`Inloggad som: ${currentUser}`;
-  document.getElementById('set-stat-hs').textContent=rec.highScore||0;
-  document.getElementById('set-stat-wins').textContent=rec.wins||0;
-  document.getElementById('set-stat-games').textContent=rec.gamesPlayed||0;
-  document.getElementById('set-stat-skins').textContent=`${(rec.skins||[]).length} / ${SKINS.length}`;
-  ['set-name-err','set-name-ok','set-pass-err','set-pass-ok','set-reset-ok','set-del-err'].forEach(id=>document.getElementById(id).textContent='');
-  ['set-new-name','set-old-pass','set-new-pass','set-new-pass2','set-del-pass'].forEach(id=>document.getElementById(id).value='');
+function goSettings() {
+  const db = getDB(), rec = db.users[currentUser];
+  document.getElementById('settings-user-label').textContent = `Inloggad som: ${currentUser}`;
+  document.getElementById('set-stat-hs').textContent = rec.highScore || 0;
+  document.getElementById('set-stat-wins').textContent = rec.wins || 0;
+  document.getElementById('set-stat-games').textContent = rec.gamesPlayed || 0;
+  document.getElementById('set-stat-skins').textContent = `${(rec.skins || []).length} / ${SKINS.length - 1}`;
+  ['set-name-err','set-name-ok','set-pass-err','set-pass-ok','set-reset-ok','set-del-err'].forEach(id => document.getElementById(id).textContent = '');
+  ['set-new-name','set-old-pass','set-new-pass','set-new-pass2','set-del-pass'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('music-toggle').checked = audioSettings.musicOn;
+  document.getElementById('vol-slider').value = audioSettings.volume;
+  document.getElementById('vol-pct').textContent = audioSettings.volume + '%';
   showScreen('settings');
 }
 
-async function changeName(){
-  const n=document.getElementById('set-new-name').value.trim();
-  const err=document.getElementById('set-name-err'),ok=document.getElementById('set-name-ok');
-  err.textContent='';ok.textContent='';
-  if(!n){err.textContent='Ange ett nytt namn';return;}
-  if(n===currentUser){err.textContent='Det är redan ditt namn';return;}
-  if(n.length<2){err.textContent='Minst 2 tecken';return;}
-  const db=getDB();
-  if(db.users[n]){err.textContent='Det namnet är taget';return;}
-  db.users[n]={...db.users[currentUser]};delete db.users[currentUser];
-  saveDB(db);killSession();saveSession(n);currentUser=n;
-  ok.textContent='✓ Namn ändrat!';
-  document.getElementById('settings-user-label').textContent=`Inloggad som: ${currentUser}`;
-  refreshHubUI();toast('✏️ Namn ändrat!');
+async function changeName() {
+  const n = document.getElementById('set-new-name').value.trim();
+  const err = document.getElementById('set-name-err'), ok = document.getElementById('set-name-ok');
+  err.textContent = ''; ok.textContent = '';
+  if (!n) { err.textContent = 'Ange ett nytt namn'; return; }
+  if (n === currentUser) { err.textContent = 'Det är redan ditt namn'; return; }
+  if (n.length < 2) { err.textContent = 'Minst 2 tecken'; return; }
+  await loadGlobalDB();
+  const db = getDB();
+  if (db.users[n]) { err.textContent = 'Det namnet är taget'; return; }
+  db.users[n] = { ...db.users[currentUser] };
+  delete db.users[currentUser];
+  await saveDB(db);
+  killSession(); saveSession(n); currentUser = n;
+  ok.textContent = '✓ Namn ändrat!';
+  document.getElementById('settings-user-label').textContent = `Inloggad som: ${currentUser}`;
+  refreshHubUI(); toast('✏️ Namn ändrat!');
 }
 
-async function changePassword(){
-  const oldP=document.getElementById('set-old-pass').value;
-  const newP=document.getElementById('set-new-pass').value;
-  const newP2=document.getElementById('set-new-pass2').value;
-  const err=document.getElementById('set-pass-err'),ok=document.getElementById('set-pass-ok');
-  err.textContent='';ok.textContent='';
-  if(!oldP||!newP||!newP2){err.textContent='Fyll i alla fält';return;}
-  if(newP!==newP2){err.textContent='Lösenorden matchar inte';return;}
-  if(newP.length<4){err.textContent='Minst 4 tecken';return;}
-  const db=getDB(),rec=db.users[currentUser];
-  if(!(await checkPw(oldP,rec.ph))){err.textContent='Fel nuvarande lösenord';return;}
-  rec.ph=await hashPw(newP);saveDB(db);
-  ok.textContent='✓ Lösenord ändrat!';
-  ['set-old-pass','set-new-pass','set-new-pass2'].forEach(id=>document.getElementById(id).value='');
+async function changePassword() {
+  const oldP = document.getElementById('set-old-pass').value;
+  const newP = document.getElementById('set-new-pass').value;
+  const newP2 = document.getElementById('set-new-pass2').value;
+  const err = document.getElementById('set-pass-err'), ok = document.getElementById('set-pass-ok');
+  err.textContent = ''; ok.textContent = '';
+  if (!oldP || !newP || !newP2) { err.textContent = 'Fyll i alla fält'; return; }
+  if (newP !== newP2) { err.textContent = 'Lösenorden matchar inte'; return; }
+  if (newP.length < 4) { err.textContent = 'Minst 4 tecken'; return; }
+  const db = getDB(), rec = db.users[currentUser];
+  if (!(await checkPw(oldP, rec.ph))) { err.textContent = 'Fel nuvarande lösenord'; return; }
+  rec.ph = await hashPw(newP); await saveDB(db);
+  ok.textContent = '✓ Lösenord ändrat!';
+  ['set-old-pass','set-new-pass','set-new-pass2'].forEach(id => document.getElementById(id).value = '');
   toast('🔑 Lösenord ändrat!');
 }
 
-function resetScore(){
-  const db=getDB();db.users[currentUser].highScore=0;saveDB(db);
-  document.getElementById('set-reset-ok').textContent='✓ Poäng nollställt!';
-  document.getElementById('set-stat-hs').textContent='0';
-  refreshHubUI();toast('🔄 Poäng nollställt');
+async function resetScore() {
+  const db = getDB(); db.users[currentUser].highScore = 0; await saveDB(db);
+  document.getElementById('set-reset-ok').textContent = '✓ Poäng nollställt!';
+  document.getElementById('set-stat-hs').textContent = '0';
+  refreshHubUI(); toast('🔄 Poäng nollställt');
 }
 
-async function deleteAccount(){
-  const p=document.getElementById('set-del-pass').value;
-  const err=document.getElementById('set-del-err');err.textContent='';
-  if(!p){err.textContent='Ange ditt lösenord';return;}
-  const db=getDB(),rec=db.users[currentUser];
-  if(!(await checkPw(p,rec.ph))){err.textContent='Fel lösenord';return;}
+async function deleteAccount() {
+  const p = document.getElementById('set-del-pass').value;
+  const err = document.getElementById('set-del-err'); err.textContent = '';
+  if (!p) { err.textContent = 'Ange ditt lösenord'; return; }
+  const db = getDB(), rec = db.users[currentUser];
+  if (!(await checkPw(p, rec.ph))) { err.textContent = 'Fel lösenord'; return; }
   openModal('modal-confirm-delete');
 }
-function confirmDelete(){
+async function confirmDelete() {
   closeModal('modal-confirm-delete');
-  const db=getDB();delete db.users[currentUser];saveDB(db);
-  killSession();currentUser=null;stopCd();
+  const db = getDB(); delete db.users[currentUser]; await saveDB(db);
+  killSession(); currentUser = null; stopCd();
   toast('🗑️ Konto raderat');
-  setTimeout(()=>showScreen('auth'),800);
+  setTimeout(() => showScreen('auth'), 800);
 }
 
 /* ═══════════════════════════════════════
    MODALS
 ═══════════════════════════════════════ */
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.querySelectorAll('.modal-bg').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-bg').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
 
 /* ═══════════════════════════════════════
    TOAST
 ═══════════════════════════════════════ */
-let toastTimer=null;
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  if(toastTimer)clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>el.classList.remove('show'),2800);
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
 }
 
 /* ═══════════════════════════════════════
-   GAME
+   CHEAT SYSTEM
+═══════════════════════════════════════ */
+let cheatAutoplay = false;
+let cheatMoneyHeart = false;
+let gamePaused = false;
+
+function openCheatMenu() {
+  if (!['playing','idle','dead'].includes(gPhase)) return;
+  if (gPhase === 'playing') gamePaused = true;
+  document.getElementById('cheat-input').value = '';
+  document.getElementById('cheat-result').textContent = '';
+  renderCheatBadges();
+  openModal('modal-cheat');
+}
+function closeCheatMenu() {
+  closeModal('modal-cheat');
+  gamePaused = false;
+}
+function renderCheatBadges() {
+  const el = document.getElementById('cheat-active-badges');
+  el.innerHTML = '';
+  if (cheatAutoplay) el.innerHTML += '<span class="cheat-badge auto">🤖 HolyAuto ON</span>';
+  if (cheatMoneyHeart) el.innerHTML += '<span class="cheat-badge skin">💰 SkinChange ON</span>';
+}
+function applyCheat() {
+  const code = document.getElementById('cheat-input').value.trim();
+  const res = document.getElementById('cheat-result');
+  if (code === 'HolyAuto') {
+    cheatAutoplay = !cheatAutoplay;
+    res.style.color = cheatAutoplay ? 'var(--c4)' : '#ff7096';
+    res.textContent = cheatAutoplay ? '🤖 Autoplay aktiverat! (inga belöningar)' : '🤖 Autoplay avaktiverat';
+  } else if (code === 'SkinChange') {
+    cheatMoneyHeart = !cheatMoneyHeart;
+    res.style.color = cheatMoneyHeart ? '#ffd700' : '#ff7096';
+    res.textContent = cheatMoneyHeart ? '💰 Money Heart skin aktiverad!' : '💰 Money Heart avaktiverad';
+  } else {
+    res.style.color = '#ff7096';
+    res.textContent = '❌ Ogiltig kod';
+  }
+  renderCheatBadges();
+  document.getElementById('cheat-input').value = '';
+}
+document.getElementById('cheat-input').addEventListener('keydown', e => { if (e.key === 'Enter') applyCheat(); });
+
+/* ═══════════════════════════════════════
+   GAME ENGINE
 ═══════════════════════════════════════ */
 const CW=400,CH=580,PIPE_W=58,GAP=162,PIPE_SPD=2.7,GRAV=0.40,JUMP_V=-7.9,BIRD_R=20;
-let gPhase='idle',gState=null,gRaf=null,gSaved=false,gBestCache=0;
+let gPhase='idle', gState=null, gRaf=null, gSaved=false, gBestCache=0;
 
-function freshState(){return{bird:{x:95,y:CH/2,vy:0},pipes:[],score:0,frame:0};}
+function freshState() {
+  return { bird:{x:95, y:CH/2, vy:0}, pipes:[], score:0, frame:0 };
+}
 
-function startGame(){
-  const db=getDB(),rec=db.users[currentUser];
-  if(!rec||rec.lives<=0){toast('❌ Inga liv kvar!');return;}
-  const skin=SKINS.find(s=>s.id===rec.skin)||SKINS[0];
-  gBestCache=rec.highScore||0;
-  document.getElementById('game-lives-hud').textContent=`💝 ${rec.lives}/${MAX_LIVES} liv`;
-  document.getElementById('game-best-hud').textContent=`🏆 Bäst: ${gBestCache}`;
-  document.getElementById('game-btns').innerHTML='';
-  gPhase='idle';gState=freshState();gSaved=false;
+async function startGame() {
+  await loadGlobalDB();
+  const db = getDB(), rec = db.users[currentUser];
+  if (!rec) return;
+  const maxL = getMaxLives(rec);
+  if (rec.lives <= 0) { toast('❌ Inga liv kvar!'); return; }
+  // reset cheats for new game
+  cheatAutoplay = false; cheatMoneyHeart = false; gamePaused = false;
+
+  const skinId = cheatMoneyHeart ? 'money' : rec.skin;
+  let skin = SKINS.find(s => s.id === skinId) || SKINS[0];
+  gBestCache = rec.highScore || 0;
+  document.getElementById('game-lives-hud').textContent = `💝 ${rec.lives}/${maxL} liv`;
+  document.getElementById('game-best-hud').textContent = `🏆 Bäst: ${gBestCache}`;
+  document.getElementById('game-btns').innerHTML = '';
+  document.getElementById('score-btn').textContent = '0/150';
+  gPhase = 'idle'; gState = freshState(); gSaved = false;
   showScreen('game');
-  if(gRaf)cancelAnimationFrame(gRaf);
-  const canvas=document.getElementById('gameCanvas');
-  const ctx=canvas.getContext('2d');
+  if (gRaf) cancelAnimationFrame(gRaf);
 
-  function keyJump(e){if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();doJump();}}
-  canvas.onclick=doJump;
-  document.addEventListener('keydown',keyJump);
-  canvas._cleanup=()=>{document.removeEventListener('keydown',keyJump);canvas.onclick=null;};
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
 
-  function doJump(){
-    if(gPhase==='idle'){gState=freshState();gState.bird.vy=JUMP_V;gPhase='playing';gSaved=false;}
-    else if(gPhase==='playing'){gState.bird.vy=JUMP_V;}
-    else if(gPhase==='dead'){gState=freshState();gPhase='idle';gSaved=false;document.getElementById('game-btns').innerHTML='';}
+  function keyJump(e) {
+    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); doJump(); }
+  }
+  canvas.onclick = doJump;
+  document.addEventListener('keydown', keyJump);
+  canvas._cleanup = () => { document.removeEventListener('keydown', keyJump); canvas.onclick = null; };
+
+  function doJump() {
+    if (cheatAutoplay) return; // AI controls
+    if (gamePaused) return;
+    if (gPhase === 'idle') {
+      gState = freshState(); gState.bird.vy = JUMP_V; gPhase = 'playing'; gSaved = false;
+      if (audioCtx) playJumpSound();
+    } else if (gPhase === 'playing') {
+      gState.bird.vy = JUMP_V;
+      if (audioCtx) playJumpSound();
+    } else if (gPhase === 'dead') {
+      gState = freshState(); gPhase = 'idle'; gSaved = false;
+      document.getElementById('game-btns').innerHTML = '';
+      document.getElementById('score-btn').textContent = '0/150';
+      // refresh skin in case cheat toggled
+      skin = SKINS.find(s => s.id === (cheatMoneyHeart ? 'money' : (getDB().users[currentUser]?.skin || 'classic'))) || SKINS[0];
+    }
   }
 
-  function loop(){
-    const s=gState,p=gPhase;
-    if(p==='playing'){
-      s.frame++;s.bird.vy+=GRAV;s.bird.y+=s.bird.vy;
-      if(s.frame%86===0){
-        const topH=55+Math.random()*(CH-GAP-55-44-44);
-        s.pipes.push({x:CW+12,topH,passed:false});
+  // AI autoplay logic
+  function autoJump(state) {
+    if (!cheatAutoplay) return;
+    if (gPhase !== 'playing') {
+      if (gPhase === 'idle') {
+        gState = freshState(); gState.bird.vy = JUMP_V; gPhase = 'playing'; gSaved = false;
       }
-      s.pipes.forEach(pp=>pp.x-=PIPE_SPD);
-      s.pipes=s.pipes.filter(pp=>pp.x>-PIPE_W-10);
-      s.pipes.forEach(pp=>{
-        if(!pp.passed&&pp.x+PIPE_W<s.bird.x){pp.passed=true;s.score++;}
-      });
-      // win
-      if(s.score>=WIN_SCORE){gPhase='won';onWin(s.score);return;}
+      return;
+    }
+    const b = state.bird;
+    // find next pipe
+    const nextPipe = state.pipes.find(p => p.x + PIPE_W > b.x);
+    if (nextPipe) {
+      const mid = nextPipe.topH + GAP / 2;
+      if (b.y > mid - 15 && b.vy > -2) { state.bird.vy = JUMP_V; }
+    } else {
+      if (b.y > CH / 2 + 20 && b.vy > -2) { state.bird.vy = JUMP_V; }
+    }
+  }
+
+  function loop() {
+    if (gamePaused) { gRaf = requestAnimationFrame(loop); return; }
+
+    const s = gState, p = gPhase;
+    autoJump(s);
+
+    if (p === 'playing') {
+      s.frame++; s.bird.vy += GRAV; s.bird.y += s.bird.vy;
+      if (s.frame % 86 === 0) {
+        const topH = 55 + Math.random() * (CH - GAP - 55 - 44 - 44);
+        s.pipes.push({ x: CW + 12, topH, passed: false });
+      }
+      s.pipes.forEach(pp => pp.x -= PIPE_SPD);
+      s.pipes = s.pipes.filter(pp => pp.x > -PIPE_W - 10);
+      s.pipes.forEach(pp => { if (!pp.passed && pp.x + PIPE_W < s.bird.x) { pp.passed = true; s.score++; } });
+
+      // update score button
+      document.getElementById('score-btn').textContent = `${s.score}/150`;
+
+      if (s.score >= WIN_SCORE) { gPhase = 'won'; onWin(s.score); return; }
+
       // collision
-      const bx=s.bird.x,by=s.bird.y,hr=BIRD_R*0.72;
-      let dead=by+hr>CH-44||by-hr<0;
-      for(const pp of s.pipes){
-        if(!dead&&bx+hr>pp.x+5&&bx-hr<pp.x+PIPE_W-5){
-          if(by-hr<pp.topH||by+hr>pp.topH+GAP)dead=true;
+      const bx = s.bird.x, by = s.bird.y, hr = BIRD_R * 0.72;
+      let dead = by + hr > CH - 44 || by - hr < 0;
+      for (const pp of s.pipes) {
+        if (!dead && bx + hr > pp.x + 5 && bx - hr < pp.x + PIPE_W - 5) {
+          if (by - hr < pp.topH || by + hr > pp.topH + GAP) dead = true;
         }
       }
-      if(dead&&!gSaved){gPhase='dead';gSaved=true;saveDeath(s.score);showGameOverBtns(s.score);}
+      if (dead && !gSaved) {
+        gPhase = 'dead'; gSaved = true;
+        playDeathSound();
+        saveDeath(s.score);
+        showGameOverBtns(s.score);
+      }
     }
 
-    drawBg(ctx,s.frame);
-    s.pipes.forEach(pp=>drawPipe(ctx,pp.x,pp.topH));
-    const angle=p==='playing'?Math.max(-0.45,Math.min(0.45,s.bird.vy*0.045)):p==='dead'?0.65:0;
-    const jitter=p==='dead'?(Math.random()-0.5)*3:0;
-    drawHeart(ctx,s.bird.x+jitter,s.bird.y+jitter,BIRD_R,skin,angle);
+    drawBg(ctx, s.frame);
+    s.pipes.forEach(pp => drawPipe(ctx, pp.x, pp.topH));
+    const angle = p === 'playing' ? Math.max(-0.45, Math.min(0.45, s.bird.vy * 0.045)) : p === 'dead' ? 0.65 : 0;
+    const jitter = p === 'dead' ? (Math.random() - 0.5) * 3 : 0;
 
-    if(p==='playing'){
-      ctx.textAlign='center';ctx.font='bold 32px Orbitron,monospace';
-      ctx.fillStyle='#fff';ctx.shadowColor='#9b5de5';ctx.shadowBlur=12;
-      ctx.fillText(s.score,CW/2,50);ctx.shadowBlur=0;
+    const activeSkin = cheatMoneyHeart
+      ? SKINS.find(s => s.id === 'money')
+      : (SKINS.find(s => s.id === getDB().users[currentUser]?.skin) || SKINS[0]);
+    drawHeart(ctx, s.bird.x + jitter, s.bird.y + jitter, BIRD_R, activeSkin || skin, angle);
+
+    if (p === 'playing') {
+      ctx.textAlign = 'center';
+      ctx.font = 'bold 32px Orbitron,monospace';
+      ctx.fillStyle = '#fff'; ctx.shadowColor = '#9b5de5'; ctx.shadowBlur = 12;
+      ctx.fillText(s.score, CW/2, 50); ctx.shadowBlur = 0;
+      // cheat indicators
+      if (cheatAutoplay) {
+        ctx.font = 'bold 11px Nunito,system-ui';
+        ctx.fillStyle = 'rgba(56,217,245,0.8)';
+        ctx.textAlign = 'left';
+        ctx.fillText('🤖 AUTO (inga belöningar)', 10, 24);
+      }
       // progress bar
-      const prog=Math.min(s.score/WIN_SCORE,1);
-      ctx.fillStyle='rgba(255,255,255,0.08)';
-      ctx.beginPath();ctx.roundRect(20,CH-52,CW-40,8,[4]);ctx.fill();
-      const grd=ctx.createLinearGradient(20,0,20+prog*(CW-40),0);
-      grd.addColorStop(0,'#9b5de5');grd.addColorStop(0.5,'#e040fb');grd.addColorStop(1,'#ffd700');
-      ctx.fillStyle=grd;
-      ctx.beginPath();ctx.roundRect(20,CH-52,prog*(CW-40),8,[4]);ctx.fill();
-      ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='bold 10px Nunito,system-ui';
-      ctx.textAlign='right';ctx.fillText(`${s.score}/${WIN_SCORE}`,CW-20,CH-58);
-      ctx.shadowBlur=0;
+      const prog = Math.min(s.score / WIN_SCORE, 1);
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.beginPath(); ctx.roundRect(20, CH-52, CW-40, 8, [4]); ctx.fill();
+      const grd = ctx.createLinearGradient(20, 0, 20 + prog * (CW-40), 0);
+      grd.addColorStop(0, '#9b5de5'); grd.addColorStop(0.5, '#e040fb'); grd.addColorStop(1, '#ffd700');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.roundRect(20, CH-52, prog * (CW-40), 8, [4]); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = 'bold 10px Nunito,system-ui';
+      ctx.textAlign = 'right'; ctx.fillText(`${s.score}/${WIN_SCORE}`, CW-20, CH-58);
+      ctx.shadowBlur = 0;
     }
-    if(p==='idle'){
-      ctx.fillStyle='rgba(0,0,18,0.45)';ctx.fillRect(0,0,CW,CH);
-      ctx.textAlign='center';ctx.shadowColor='#9b5de5';ctx.shadowBlur=14;
-      ctx.font='bold 26px Nunito,system-ui';ctx.fillStyle='#fff';
-      ctx.fillText('Tryck för att starta',CW/2,CH/2-14);
-      ctx.font='15px Nunito,system-ui';ctx.fillStyle='rgba(210,160,255,0.75)';
-      ctx.fillText('Mellanslag / Klick / Tap',CW/2,CH/2+16);ctx.shadowBlur=0;
+    if (p === 'idle') {
+      ctx.fillStyle = 'rgba(0,0,18,0.45)'; ctx.fillRect(0,0,CW,CH);
+      ctx.textAlign = 'center'; ctx.shadowColor = '#9b5de5'; ctx.shadowBlur = 14;
+      ctx.font = 'bold 26px Nunito,system-ui'; ctx.fillStyle = '#fff';
+      ctx.fillText('Tryck för att starta', CW/2, CH/2 - 14);
+      ctx.font = '15px Nunito,system-ui'; ctx.fillStyle = 'rgba(210,160,255,0.75)';
+      ctx.fillText('Mellanslag / Klick / Tap', CW/2, CH/2 + 16); ctx.shadowBlur = 0;
     }
-    if(p==='dead'){
-      ctx.fillStyle='rgba(0,0,18,0.68)';ctx.fillRect(0,0,CW,CH);
-      ctx.textAlign='center';ctx.shadowColor='#ff0055';ctx.shadowBlur=16;
-      ctx.font='bold 30px Nunito,system-ui';ctx.fillStyle='#ff6b8a';
-      ctx.fillText('💔 GAME OVER',CW/2,CH/2-62);ctx.shadowBlur=0;
-      ctx.font='bold 24px Orbitron,monospace';ctx.fillStyle='#fff';
-      ctx.fillText(`Poäng: ${s.score}`,CW/2,CH/2-22);
-      ctx.font='15px Nunito,system-ui';ctx.fillStyle='rgba(210,160,255,0.7)';
-      ctx.fillText(`Bäst: ${Math.max(gBestCache,s.score)}`,CW/2,CH/2+8);
-      ctx.fillText('Tryck på canvas för nytt spel',CW/2,CH/2+34);
+    if (p === 'dead') {
+      ctx.fillStyle = 'rgba(0,0,18,0.68)'; ctx.fillRect(0,0,CW,CH);
+      ctx.textAlign = 'center'; ctx.shadowColor = '#ff0055'; ctx.shadowBlur = 16;
+      ctx.font = 'bold 30px Nunito,system-ui'; ctx.fillStyle = '#ff6b8a';
+      ctx.fillText('💔 GAME OVER', CW/2, CH/2 - 62); ctx.shadowBlur = 0;
+      ctx.font = 'bold 24px Orbitron,monospace'; ctx.fillStyle = '#fff';
+      ctx.fillText(`Poäng: ${s.score}`, CW/2, CH/2 - 22);
+      ctx.font = '15px Nunito,system-ui'; ctx.fillStyle = 'rgba(210,160,255,0.7)';
+      ctx.fillText(`Bäst: ${Math.max(gBestCache, s.score)}`, CW/2, CH/2 + 8);
+      ctx.fillText('Tryck på canvas för nytt spel', CW/2, CH/2 + 34);
     }
-    if(p!=='won')gRaf=requestAnimationFrame(loop);
+    if (p !== 'won') gRaf = requestAnimationFrame(loop);
   }
-  gRaf=requestAnimationFrame(loop);
+  gRaf = requestAnimationFrame(loop);
 }
 
-function showGameOverBtns(score){
-  const btns=document.getElementById('game-btns');btns.innerHTML='';
-  const hub=document.createElement('button');
-  hub.className='btn-primary';hub.style.cssText='padding:12px 26px;border-radius:13px;font-size:15px;width:auto;letter-spacing:0';
-  hub.textContent='🏠 Hub';hub.onclick=()=>{cleanupGame();goHub();};
-  const again=document.createElement('button');
-  again.className='btn-secondary';again.style.cssText='padding:12px 26px;border-radius:13px;font-size:15px;width:auto';
-  again.textContent='🔄 Igen';again.onclick=()=>{btns.innerHTML='';};
-  btns.appendChild(hub);btns.appendChild(again);
+function showGameOverBtns(score) {
+  const btns = document.getElementById('game-btns'); btns.innerHTML = '';
+  const hub = document.createElement('button');
+  hub.className = 'btn-primary';
+  hub.style.cssText = 'padding:12px 26px;border-radius:13px;font-size:15px;width:auto;letter-spacing:0';
+  hub.textContent = '🏠 Hub'; hub.onclick = () => { cleanupGame(); goHub(); };
+  const again = document.createElement('button');
+  again.className = 'btn-secondary';
+  again.style.cssText = 'padding:12px 26px;border-radius:13px;font-size:15px;width:auto';
+  again.textContent = '🔄 Igen'; again.onclick = () => { btns.innerHTML = ''; };
+  btns.appendChild(hub); btns.appendChild(again);
 }
 
-function cleanupGame(){
-  if(gRaf){cancelAnimationFrame(gRaf);gRaf=null;}
-  const canvas=document.getElementById('gameCanvas');
-  if(canvas._cleanup){canvas._cleanup();}
+function cleanupGame() {
+  if (gRaf) { cancelAnimationFrame(gRaf); gRaf = null; }
+  const canvas = document.getElementById('gameCanvas');
+  if (canvas._cleanup) { canvas._cleanup(); }
+  cheatAutoplay = false; cheatMoneyHeart = false; gamePaused = false;
 }
 
-function saveDeath(score){
-  const db=getDB(),rec=db.users[currentUser];if(!rec)return;
-  if(rec.lives>0)rec.lives--;
-  if(score>(rec.highScore||0))rec.highScore=score;
-  rec.gamesPlayed=(rec.gamesPlayed||0)+1;
-  SKINS.forEach(sk=>{if(score>=sk.unlockAt&&!rec.skins.includes(sk.id)){rec.skins.push(sk.id);toast(`🎨 Ny skin: ${sk.label}!`);}});
-  saveDB(db);
-  gBestCache=rec.highScore;
-  document.getElementById('game-lives-hud').textContent=`💝 ${rec.lives}/${MAX_LIVES} liv`;
-  document.getElementById('game-best-hud').textContent=`🏆 Bäst: ${rec.highScore}`;
-}
-
-function onWin(score){
-  if(gRaf){cancelAnimationFrame(gRaf);gRaf=null;}
-  const db=getDB(),rec=db.users[currentUser];
-  if(rec){
-    if(score>(rec.highScore||0))rec.highScore=score;
-    rec.gamesPlayed=(rec.gamesPlayed||0)+1;
-    rec.wins=(rec.wins||0)+1;
-    // +10 lives bonus, capped at MAX_LIVES
-    rec.lives=Math.min(MAX_LIVES,(rec.lives||0)+WIN_BONUS);
-    SKINS.forEach(sk=>{if(score>=sk.unlockAt&&!rec.skins.includes(sk.id))rec.skins.push(sk.id);});
-    saveDB(db);
+async function saveDeath(score) {
+  const db = getDB(), rec = db.users[currentUser]; if (!rec) return;
+  const maxL = getMaxLives(rec);
+  if (!cheatAutoplay) {
+    if (rec.lives > 0) rec.lives--;
+    if (score > (rec.highScore || 0)) rec.highScore = score;
+    rec.gamesPlayed = (rec.gamesPlayed || 0) + 1;
+    SKINS.forEach(sk => {
+      if (sk.id !== 'money' && score >= sk.unlockAt && !rec.skins.includes(sk.id)) {
+        rec.skins.push(sk.id); toast(`🎨 Ny skin: ${sk.label}!`);
+      }
+    });
   }
-  const skin=SKINS.find(s=>s.id===rec?.skin)||SKINS[0];
-  document.getElementById('win-skin-emoji').textContent=skin.emoji;
-  document.getElementById('win-score').textContent=score;
-  document.getElementById('win-best').textContent=rec?.highScore||score;
-  document.getElementById('win-wins').textContent=rec?.wins||1;
-  cleanupGame();showScreen('win');
+  rec.lastSeen = Date.now();
+  await saveDB(db);
+  gBestCache = rec.highScore;
+  const updMaxL = getMaxLives(rec);
+  document.getElementById('game-lives-hud').textContent = `💝 ${rec.lives}/${updMaxL} liv`;
+  document.getElementById('game-best-hud').textContent = `🏆 Bäst: ${rec.highScore}`;
+  // kick to lobby if no lives
+  if (rec.lives <= 0 && !cheatAutoplay) {
+    setTimeout(() => { cleanupGame(); goHub(); toast('💀 Inga liv kvar! Gå tillbaka till hubb.'); }, 1400);
+  }
+}
+
+async function onWin(score) {
+  if (gRaf) { cancelAnimationFrame(gRaf); gRaf = null; }
+  const db = getDB(), rec = db.users[currentUser];
+  let newMaxMsg = '';
+  if (rec && !cheatAutoplay) {
+    if (score > (rec.highScore || 0)) rec.highScore = score;
+    rec.gamesPlayed = (rec.gamesPlayed || 0) + 1;
+    rec.wins = (rec.wins || 0) + 1;
+    // +10 max lives per win capped at HARD_CAP
+    const oldMax = getMaxLives(rec);
+    // wins already incremented, so maxLives recalculated
+    const newMax = getMaxLives(rec);
+    if (newMax > oldMax) newMaxMsg = ` Max liv ökade till ${newMax}!`;
+    // +10 lives bonus up to current max
+    const curMax = getMaxLives(rec);
+    rec.lives = Math.min(curMax, (rec.lives || 0) + WIN_BONUS_LIVES);
+    SKINS.forEach(sk => { if (sk.id !== 'money' && score >= sk.unlockAt && !rec.skins.includes(sk.id)) rec.skins.push(sk.id); });
+    rec.lastSeen = Date.now();
+    await saveDB(db);
+  }
+  const skin = SKINS.find(s => s.id === rec?.skin) || SKINS[0];
+  document.getElementById('win-skin-emoji').textContent = cheatAutoplay ? '🤖' : skin.emoji;
+  document.getElementById('win-score').textContent = score;
+  document.getElementById('win-best').textContent = rec?.highScore || score;
+  document.getElementById('win-wins').textContent = rec?.wins || (cheatAutoplay ? 0 : 1);
+  document.getElementById('win-maxlives').textContent = getMaxLives(rec) + ' max';
+  document.getElementById('win-sub-text').textContent = cheatAutoplay
+    ? '150 poäng via Autoplay — inga belöningar'
+    : `150 poäng — Legendarisk! +${WIN_BONUS_LIVES} liv bonus!${newMaxMsg}`;
+  document.getElementById('win-msg').innerHTML = cheatAutoplay
+    ? '🤖 Autoplay aktiv — poäng & belöningar inaktiverade för denna runda.'
+    : '🌟 Du låste upp den hemliga <strong>GULD-KRONAN</strong> skin!<br>Grattis – du är en Flappy Heart-legend!';
+  cleanupGame(); showScreen('win');
 }
 
 /* ═══════════════════════════════════════
    CANVAS DRAW
 ═══════════════════════════════════════ */
-function drawHeart(ctx,cx,cy,size,skin,angle){
-  ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
-  const s=size;
+function drawHeart(ctx, cx, cy, size, skin, angle) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
+  const s = size;
   ctx.beginPath();
-  ctx.moveTo(0,s*0.3);
-  ctx.bezierCurveTo(s*0.9,-s*0.1,s*1.1,-s*0.9,0,-s*0.55);
-  ctx.bezierCurveTo(-s*1.1,-s*0.9,-s*0.9,-s*0.1,0,s*0.3);
+  ctx.moveTo(0, s*0.3);
+  ctx.bezierCurveTo(s*0.9, -s*0.1, s*1.1, -s*0.9, 0, -s*0.55);
+  ctx.bezierCurveTo(-s*1.1, -s*0.9, -s*0.9, -s*0.1, 0, s*0.3);
   ctx.closePath();
-  if(skin.draw==='gradient'){
-    const g=ctx.createLinearGradient(-s,-s,s,s);
-    g.addColorStop(0,'#ff4d6d');g.addColorStop(0.33,'#FFD700');g.addColorStop(0.66,'#c77dff');g.addColorStop(1,'#48cae4');
-    ctx.fillStyle=g;
-  }else if(skin.draw==='fire'){
-    const g=ctx.createRadialGradient(0,0,0,0,0,s);
-    g.addColorStop(0,'#fff176');g.addColorStop(0.4,'#ff6b35');g.addColorStop(1,'#b00000');
-    ctx.fillStyle=g;
-  }else if(skin.draw==='dark'){
-    const g=ctx.createRadialGradient(0,-s*0.2,0,0,0,s*1.2);
-    g.addColorStop(0,'#aa00aa');g.addColorStop(1,'#0a0010');
-    ctx.fillStyle=g;
-  }else if(skin.draw==='crown'){
-    const g=ctx.createLinearGradient(0,-s,0,s);
-    g.addColorStop(0,'#fff9c4');g.addColorStop(0.4,'#ffd700');g.addColorStop(1,'#ff8f00');
-    ctx.fillStyle=g;
-  }else{ctx.fillStyle=skin.tint;}
-  ctx.shadowColor=skin.draw==='gradient'?'#e040fb':skin.draw==='crown'?'#ffd700':skin.tint;
-  ctx.shadowBlur=22;ctx.fill();
-  ctx.beginPath();ctx.ellipse(-s*0.25,-s*0.25,s*0.18,s*0.10,-0.6,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,255,255,0.35)';ctx.shadowBlur=0;ctx.fill();
-  if(skin.draw==='crown'){ctx.beginPath();ctx.arc(0,-s*0.15,s*0.22,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fill();}
+  if (skin.draw === 'gradient') {
+    const g = ctx.createLinearGradient(-s, -s, s, s);
+    g.addColorStop(0, '#ff4d6d'); g.addColorStop(0.33, '#FFD700'); g.addColorStop(0.66, '#c77dff'); g.addColorStop(1, '#48cae4');
+    ctx.fillStyle = g;
+  } else if (skin.draw === 'fire') {
+    const g = ctx.createRadialGradient(0,0,0,0,0,s);
+    g.addColorStop(0, '#fff176'); g.addColorStop(0.4, '#ff6b35'); g.addColorStop(1, '#b00000');
+    ctx.fillStyle = g;
+  } else if (skin.draw === 'dark') {
+    const g = ctx.createRadialGradient(0,-s*0.2,0,0,0,s*1.2);
+    g.addColorStop(0, '#aa00aa'); g.addColorStop(1, '#0a0010');
+    ctx.fillStyle = g;
+  } else if (skin.draw === 'crown') {
+    const g = ctx.createLinearGradient(0,-s,0,s);
+    g.addColorStop(0, '#fff9c4'); g.addColorStop(0.4, '#ffd700'); g.addColorStop(1, '#ff8f00');
+    ctx.fillStyle = g;
+  } else if (skin.draw === 'money') {
+    const g = ctx.createLinearGradient(0,-s,0,s);
+    g.addColorStop(0, '#69f0ae'); g.addColorStop(0.4, '#00c853'); g.addColorStop(1, '#1b5e20');
+    ctx.fillStyle = g;
+  } else {
+    ctx.fillStyle = skin.tint;
+  }
+  ctx.shadowColor = skin.draw === 'money' ? '#00e676' : skin.draw === 'gradient' ? '#e040fb' : skin.draw === 'crown' ? '#ffd700' : skin.tint;
+  ctx.shadowBlur = 22; ctx.fill();
+  // shine
+  ctx.beginPath(); ctx.ellipse(-s*0.25, -s*0.25, s*0.18, s*0.10, -0.6, 0, Math.PI*2);
+  ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.shadowBlur = 0; ctx.fill();
+  if (skin.draw === 'crown' || skin.draw === 'money') {
+    ctx.beginPath(); ctx.arc(0, -s*0.15, s*0.22, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.fill();
+  }
+  // money symbol overlay
+  if (skin.draw === 'money') {
+    ctx.font = `bold ${Math.round(s*0.9)}px monospace`;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('$', 0, s*0.05);
+    ctx.textBaseline = 'alphabetic';
+  }
   ctx.restore();
 }
 
-function drawPipe(ctx,x,topH){
-  const botY=topH+GAP;
-  const g=ctx.createLinearGradient(x,0,x+PIPE_W,0);
-  g.addColorStop(0,'#2a0050');g.addColorStop(0.45,'#9b5de5');g.addColorStop(1,'#2a0050');
-  ctx.fillStyle=g;ctx.shadowColor='#9b5de5';ctx.shadowBlur=14;
-  ctx.beginPath();ctx.roundRect(x,-4,PIPE_W,topH+4,[0,0,6,6]);ctx.fill();
-  ctx.beginPath();ctx.roundRect(x-5,topH-24,PIPE_W+10,24,[7,7,0,0]);ctx.fill();
-  ctx.beginPath();ctx.roundRect(x-5,botY,PIPE_W+10,24,[0,0,7,7]);ctx.fill();
-  ctx.beginPath();ctx.roundRect(x,botY+24,PIPE_W,CH-botY-24,[0,0,6,6]);ctx.fill();
-  ctx.strokeStyle='rgba(180,100,255,0.3)';ctx.lineWidth=1.5;ctx.shadowBlur=0;
-  ctx.beginPath();ctx.moveTo(x+6,-4);ctx.lineTo(x+6,topH);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(x+6,botY+24);ctx.lineTo(x+6,CH);ctx.stroke();
+function drawPipe(ctx, x, topH) {
+  const botY = topH + GAP;
+  const g = ctx.createLinearGradient(x, 0, x + PIPE_W, 0);
+  g.addColorStop(0, '#2a0050'); g.addColorStop(0.45, '#9b5de5'); g.addColorStop(1, '#2a0050');
+  ctx.fillStyle = g; ctx.shadowColor = '#9b5de5'; ctx.shadowBlur = 14;
+  ctx.beginPath(); ctx.roundRect(x, -4, PIPE_W, topH+4, [0,0,6,6]); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(x-5, topH-24, PIPE_W+10, 24, [7,7,0,0]); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(x-5, botY, PIPE_W+10, 24, [0,0,7,7]); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(x, botY+24, PIPE_W, CH-botY-24, [0,0,6,6]); ctx.fill();
+  ctx.strokeStyle = 'rgba(180,100,255,0.3)'; ctx.lineWidth = 1.5; ctx.shadowBlur = 0;
+  ctx.beginPath(); ctx.moveTo(x+6, -4); ctx.lineTo(x+6, topH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x+6, botY+24); ctx.lineTo(x+6, CH); ctx.stroke();
 }
 
-function drawBg(ctx,frame){
-  const sky=ctx.createLinearGradient(0,0,0,CH);
-  sky.addColorStop(0,'#04000d');sky.addColorStop(0.55,'#100020');sky.addColorStop(1,'#1c0038');
-  ctx.fillStyle=sky;ctx.fillRect(0,0,CW,CH);
-  for(let i=0;i<60;i++){
-    const sx=(i*173+17)%CW,sy=(i*97+11)%(CH*0.72);
-    const tw=0.18+0.82*Math.abs(Math.sin(frame*0.005+i*0.68));
-    ctx.globalAlpha=tw*0.85;ctx.fillStyle=i%5===0?'#e0b8ff':'#fff';
-    ctx.fillRect(sx,sy,i%7===0?2:1.5,i%7===0?2:1.5);
+function drawBg(ctx, frame) {
+  const sky = ctx.createLinearGradient(0,0,0,CH);
+  sky.addColorStop(0, '#04000d'); sky.addColorStop(0.55, '#100020'); sky.addColorStop(1, '#1c0038');
+  ctx.fillStyle = sky; ctx.fillRect(0,0,CW,CH);
+  for (let i = 0; i < 60; i++) {
+    const sx = (i*173+17)%CW, sy = (i*97+11)%(CH*0.72);
+    const tw = 0.18 + 0.82 * Math.abs(Math.sin(frame*0.005 + i*0.68));
+    ctx.globalAlpha = tw * 0.85; ctx.fillStyle = i%5===0 ? '#e0b8ff' : '#fff';
+    ctx.fillRect(sx, sy, i%7===0 ? 2 : 1.5, i%7===0 ? 2 : 1.5);
   }
-  ctx.globalAlpha=1;
-  [[CW*0.15,CH*0.22,90,'rgba(123,47,247,0.09)'],[CW*0.82,CH*0.42,120,'rgba(80,0,160,0.07)'],[CW*0.5,CH*0.14,65,'rgba(224,64,251,0.06)']].forEach(([nx,ny,nr,nc])=>{
-    const rg=ctx.createRadialGradient(nx,ny,0,nx,ny,nr);rg.addColorStop(0,nc);rg.addColorStop(1,'transparent');
-    ctx.fillStyle=rg;ctx.fillRect(0,0,CW,CH);
+  ctx.globalAlpha = 1;
+  [[CW*0.15,CH*0.22,90,'rgba(123,47,247,0.09)'], [CW*0.82,CH*0.42,120,'rgba(80,0,160,0.07)'], [CW*0.5,CH*0.14,65,'rgba(224,64,251,0.06)']].forEach(([nx,ny,nr,nc]) => {
+    const rg = ctx.createRadialGradient(nx,ny,0,nx,ny,nr); rg.addColorStop(0,nc); rg.addColorStop(1,'transparent');
+    ctx.fillStyle = rg; ctx.fillRect(0,0,CW,CH);
   });
-  const gr=ctx.createLinearGradient(0,CH-44,0,CH);gr.addColorStop(0,'#250045');gr.addColorStop(1,'#09001a');
-  ctx.fillStyle=gr;ctx.fillRect(0,CH-44,CW,44);
-  ctx.strokeStyle='rgba(180,80,255,0.42)';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(0,CH-44);ctx.lineTo(CW,CH-44);ctx.stroke();
+  const gr = ctx.createLinearGradient(0, CH-44, 0, CH); gr.addColorStop(0, '#250045'); gr.addColorStop(1, '#09001a');
+  ctx.fillStyle = gr; ctx.fillRect(0, CH-44, CW, 44);
+  ctx.strokeStyle = 'rgba(180,80,255,0.42)'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, CH-44); ctx.lineTo(CW, CH-44); ctx.stroke();
 }
 </script>
 </body>
